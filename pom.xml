@@ -11,9 +11,11 @@
   <name>regextester</name>
     <modules>
         <module>client</module>
-        <module>client-web</module>
         <module>client-netbeans</module>
         <module>js</module>
+        <module>automatonosgi</module>
+        <module>generex</module>
+        <module>client-web</module>
     </modules>
     <properties>
         <net.java.html.version>1.5.1</net.java.html.version>

@@ -70,7 +70,7 @@
                     </archive>
                 </configuration>
             </plugin>
-            <plugin>
+<!--            <plugin>
                 <groupId>org.apidesign.bck2brwsr</groupId>
                 <artifactId>bck2brwsr-maven-plugin</artifactId>
                 <version>${bck2brwsr.version}</version>
@@ -92,7 +92,7 @@
                         <export>${project.mainclass}</export>
                     </exports>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.4</version>
@@ -214,6 +214,12 @@
             <version>${bck2brwsr.version}</version>
             <classifier>bck2brwsr</classifier>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.netbeans.html</groupId>
+                    <artifactId>xhr4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.javapro</groupId>
