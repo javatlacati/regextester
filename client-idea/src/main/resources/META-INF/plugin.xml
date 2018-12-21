@@ -1,0 +1,67 @@
+<idea-plugin>
+    <id>org.javapro.idea</id>
+    <name>Dukescript Java Regex Tester</name>
+    <version>1.0.1</version>
+    <vendor email="scherzo16@gmail.com" url="http://www.javapro.org">javatlacati from Java Pro</vendor>
+
+    <description><![CDATA[
+      <h2>Visual interactive plugin using Dukescript</h2>
+      It has the following characteristics:
+      <ol>
+        <li><a href="https://www.regular-expressions.info/unicode.html">Unicode categories</a> support such as <pre>\p{Letter}</pre> or <pre>\p{InGreek}</pre></li>
+        <li>Pattern modifiers at regex such as:
+            <ol>
+                <li>case insensitive matching trough prefixing with <pre>(?i)</pre></li>
+            </ol>
+        </li>
+        <li>hexadecimal character matching such as <pre>[\x7F-\xFF]</pre></li>
+        <li>linebreaks trough <pre>\n</pre></li>
+      </ol>
+      <br>
+      <h2>Credits</h2>
+      <br>
+      <b>Concept and development:</b> Ruslan López Carro
+      <br>
+      <b>Some UI improvements:</b> Leonardo Quintana Juárez
+      <br>
+      <br>
+      If you want to support this plugin or contribute for my rehabilitation therapies don't hesitate to <a href="https://paypal.me/javatlacati">Donate</a>
+      <br>
+      <br>
+      This plugin was possible due the following technologies:
+      <ul>
+        <li><a href="http://dukescript.com/">Dukescript</a></li>
+        <li><a href="https://jorgeantrax.github.io/level-docs/">Level CSS</a></li>
+        <li><a href="https://bcrikko.github.io/NES.css/">NES CSS</a></li>
+        <li><a href="http://kristopolous.github.io/BOOTSTRA.386/">BOOTSTRA.386</a></li>
+        <li><a href="https://github.com/mifmif/Generex/">Generex</a></li>
+        <li>IntelliJ IDEA SDK from Jetbrains</li>
+        <li>Open JavaFx</li>
+      </ul>
+    ]]></description>
+
+    <change-notes><![CDATA[
+      <ul>
+        <li>Support for groups.</li>
+        <li>Groups included in the demo mode.</li>
+      </ul>
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="163.0"/>
+
+    <!--avalible if java language support is installed-->
+    <depends>com.intellij.modules.java</depends>
+
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Java Regex Tester" secondary="true" anchor="bottom"
+                    factoryClass="org.javapro.regextester.MyToolWindowFactory"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+
+</idea-plugin>

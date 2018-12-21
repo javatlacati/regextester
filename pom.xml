@@ -13,6 +13,7 @@
         <module>client</module>
         <module>client-netbeans</module>
         <module>js</module>
+        <module>client-idea</module>
         <module>automatonosgi</module>
         <module>generex</module>
         <module>client-web</module>
