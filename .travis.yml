@@ -2,8 +2,10 @@ language: java
 cache:
   directories:
   - $HOME/.m2
+  - ./client-idea/lib
 env:
   - MOZ_HEADLESS=1
+  - VERSION=2018.2.7
 addons:
   chrome: stable
 before_install:
@@ -16,6 +18,13 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start || echo No X11
   - sleep 3
+  - cd client-idea
+  - mkdir -p lib
+  - cd lib
+  - wget –q https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/$VERSION/ideaIC-$VERSION.zip
+  - jar xf ideaIC-$VERSION.zip
+  - cd ..
+  - cd ..
 #addons:
 #  firefox: latest
 # before_install:
