@@ -50,9 +50,8 @@ final class DataModel {
         try {
             String excaped = value.replaceAll("[\\\\]{2}", Matcher.quoteReplacement("\\"));
             model.setRegexText(excaped);
-        } catch (PatternSyntaxException pse) {
+        } catch (PatternSyntaxException | IndexOutOfBoundsException pse) {
             model.setRegexText(pse.getMessage());
-            return;
         }
     }
 

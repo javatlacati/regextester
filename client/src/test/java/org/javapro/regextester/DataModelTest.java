@@ -15,6 +15,25 @@ import static org.junit.Assert.*;
  */
 @RunWith(BrowserRunner.class)
 public class DataModelTest {
+    
+    @Test
+    public void testEscaping() {
+        RegexTesting model = new RegexTesting("f.o,bar,hello,world", "f\\.o,(bar)", "$1", false, false, false, false);
+        model.setTestCase("123");
+        model.setReplacementText("");
+        DataModel.setEscapedRegexText(model, "\\\\d+");
+        assertEquals("\\d+",model.getRegexText());
+        assertTrue(model.isMatches());
+    }
+    
+    @Test
+    public void testFailedEscaping() {
+        RegexTesting model = new RegexTesting("f.o,bar,hello,world", "f\\.o,(bar)", "$1", false, false, false, false);
+        model.setTestCase("123");
+        DataModel.setEscapedRegexText(model, "\\\\d+");
+        assertEquals("No group 1",model.getRegexText());
+        assertFalse(model.isMatches());
+    }
 
     @Test
     public void testCapturingGroup() {
