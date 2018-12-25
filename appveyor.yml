@@ -12,7 +12,7 @@ before_build:
   - if not exist lib mkdir lib
   - cd lib
   - ECHO certutil.exe -urlcache -split -f "https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/%VERSION%/ideaIC-%VERSION%.zip" ideaIC-%VERSION%.zip
-  - (new-object System.Net.WebClient).DownloadFile("https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/%VERSION%/ideaIC-%VERSION%.zip", "ideaIC-%VERSION%.zip")
+  - bitsadmin /transfer myDownloadJob /download /priority normal "https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/%VERSION%/ideaIC-%VERSION%.zip" ideaIC-%VERSION%.zip
   - jar xf ideaIC-%VERSION%.zip
   - cd ..
   - cd..
