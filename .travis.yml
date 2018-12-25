@@ -18,8 +18,9 @@ before_script:
   - cd client-idea
   - mkdir -p lib
   - cd lib
-  - bash echo $TEST_VAR
-  - bash wget –q https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/$VERSION/ideaIC-$VERSION.zip
+  - echo $TEST_VAR
+  - echo wget –q https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/$VERSION/ideaIC-$VERSION.zip
+  - wget –q https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/$VERSION/ideaIC-$VERSION.zip
   - jar xf ideaIC-$VERSION.zip
   - cd ..
   - cd ..
