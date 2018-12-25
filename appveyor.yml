@@ -9,7 +9,7 @@ install:
   
 cache:
   - client-idea/lib
-  - %USERPROFILE%/.m2/repository/
+  # - %USERPROFILE%/.m2/repository/
 
 before_build:
   - cd client-idea
