@@ -6,10 +6,6 @@
 install:
   - cmd: echo %JAVA_HOME%
   - cmd: echo %M2_HOME%
-  
-cache:
-  - client-idea/lib
-  # - %USERPROFILE%/.m2/repository/
 
 before_build:
   - cd client-idea
@@ -31,3 +27,4 @@ test_script:
 cache:
   - C:\maven\
   - C:\Users\appveyor\.m2
+  - client-idea\lib
