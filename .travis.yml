@@ -27,7 +27,7 @@ before_script:
 install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B
 script:
-  - mvn test jacoco:report -B
+  - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B
 #addons:
 #  firefox: latest
 # before_install:
