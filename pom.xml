@@ -28,6 +28,8 @@
         <presenters.version>1.5.2</presenters.version>
         <enforcer.fail>false</enforcer.fail>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -102,6 +104,11 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <excludes>
+                        <exclude>**/**/RegexTesting*</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
@@ -109,6 +116,7 @@
                 <version>4.3.0</version>
                 <configuration>
                     <repoToken>${env.repoToken}</repoToken>
+                    <sourceEncoding>UTF-8</sourceEncoding>
                 </configuration>
             </plugin>
         </plugins>
