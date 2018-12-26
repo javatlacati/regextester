@@ -24,6 +24,7 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start || echo No X11
   - sleep 3
+install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B
 #addons:
 #  firefox: latest
 # before_install:
@@ -31,5 +32,5 @@ before_script:
  # - wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r .assets[0].browser_download_url)
 
 after_success:
-  - mvn clean test jacoco:report coveralls:reportt
+  - mvn clean test jacoco:report coveralls:report -B
  # - java -cp ~/codacy-coverage-reporter-assembly-latest.jar com.codacy.CodacyCoverageReporter -l Java -r target/site/cobertura/coverage.xml
