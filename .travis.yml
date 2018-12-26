@@ -16,7 +16,7 @@ before_install:
   - cd lib
   - echo $TEST_VAR
   - echo wget –q https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/$VERSION/ideaIC-$VERSION.zip
-  - wget https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/$VERSION/ideaIC-$VERSION.zip
+  - [ -f "ideaIC-$VERSION.zip" ] || wget https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/$VERSION/ideaIC-$VERSION.zip
   - jar xf ideaIC-$VERSION.zip
   - cd ..
   - cd ..
