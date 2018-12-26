@@ -7,7 +7,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.prefs.Preferences;
 import org.javapro.regextester.js.PlatformServices;
 import net.java.html.boot.BrowserBuilder;
 
@@ -38,16 +37,6 @@ public final class Main {
     }
     
     private static final class DesktopServices extends PlatformServices {
-
-    @Override
-    public String getPreferences(String key) {
-        return Preferences.userNodeForPackage(Main.class).get(key, null);
-    }
-
-    @Override
-    public void setPreferences(String key, String value) {
-        Preferences.userNodeForPackage(Main.class).put(key, value);
-    }
 
     @Override
     public void openWebBrowser(String url) {
