@@ -1,5 +1,6 @@
 package org.javapro.regextester.js;
 
+import java.net.MalformedURLException;
 import net.java.html.junit.BrowserRunner;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -27,6 +28,6 @@ public class JsInteractionTest {
      @Test
     public void openWebBrowser() {
         final PlatformServices services = new PlatformServices();
-        //services.openWebBrowser(null);
+        services.openWebBrowser("https://wiki.openjdk.java.net/display/Nashorn/Nashorn+extensions");
     }
 }
