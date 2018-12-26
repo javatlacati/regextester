@@ -31,6 +31,6 @@ install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B
  # - sudo apt-get install jq
  # - wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r .assets[0].browser_download_url)
 after_success:
-  - mvn clean org.jacoco:jacoco-maven-plugin:0.8.2:prepare-agent install org.jacoco:jacoco-maven-plugin:0.8.2:report coveralls:report -B
+  - mvn clean test org.jacoco:jacoco-maven-plugin:0.8.2:prepare-agent install org.jacoco:jacoco-maven-plugin:0.8.2:report coveralls:report -B
   # mvn clean test jacoco:report coveralls:report -B
  # - java -cp ~/codacy-coverage-reporter-assembly-latest.jar com.codacy.CodacyCoverageReporter -l Java -r target/site/cobertura/coverage.xml
