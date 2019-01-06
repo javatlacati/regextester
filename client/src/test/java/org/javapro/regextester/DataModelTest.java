@@ -41,13 +41,19 @@ public class DataModelTest {
     }
 
     @Test
-    public void testEscaping() {
+    public void testEscapingBackslash() {
         RegexTesting model = new RegexTesting("f.o,bar,hello,world", "f\\.o,(bar)", "$1", false, false, false, false);
         model.setTestCase("123");
         model.setReplacementText("");
         DataModel.setEscapedRegexText(model, "\\\\d+");
         assertEquals("\\d+", model.getRegexText());
         assertTrue(model.isMatches());
+    }
+    
+    @Test
+    public void testEscapingQuotes() {
+        RegexTesting model = new RegexTesting("f.o,bar,hello,world", "\"[Hh](ello|i)\"", "", false, false, false, false);
+        assertEquals("\\\"[Hh](ello|i)\\\"", model.getEscapedRegexText());
     }
 
     /**

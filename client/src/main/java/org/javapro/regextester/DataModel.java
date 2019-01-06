@@ -43,12 +43,12 @@ final class DataModel {
 
     @ComputedProperty(write = "setEscapedRegexText")
     static String escapedRegexText(String regexText) {
-        return regexText.replaceAll("[\\\\]", "\\\\\\\\");
+        return regexText.replaceAll("[\\\\]", "\\\\\\\\").replaceAll("\"", "\\\\\"");
     }
 
     static void setEscapedRegexText(RegexTesting model, String value) {
         try {
-            String excaped = value.replaceAll("[\\\\]{2}", Matcher.quoteReplacement("\\"));
+            String excaped = value.replaceAll("[\\\\]{2}", Matcher.quoteReplacement("\\")).replaceAll("\\\\\"", Matcher.quoteReplacement("\""));
             model.setRegexText(excaped);
         } catch (PatternSyntaxException | IndexOutOfBoundsException pse) {
             model.setRegexText(pse.getMessage());
