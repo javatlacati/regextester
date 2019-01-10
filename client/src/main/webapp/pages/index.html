@@ -1,200 +1,219 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>Java Regex tester</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <head>
+        <title>Java RegExp tester</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
-    <link type="text/css" rel="stylesheet" href="introjs.css">
-    <link type="text/css" class="style" rel="stylesheet" href="level.min.css">
-</head>
+        <link type="text/css" rel="stylesheet" href="introjs.css">
+        <link type="text/css" class="style" rel="stylesheet" href="level.min.css">
+    </head>
 
-<body class="lv-row-multiple color-light is-fluid-container is-center">
-<div class="mobile-is-block tablet-15 color-cloud overflow-y is-shadow-l-b container">
-    <div class="lv-row">
-        <div class="lv-column padding-05 ">
-            <center><a class="lv-button is-info-outline btn is-primary btn-large btn-success" href="javascript:void(0);"
-                       onclick="javascript:introJs().start();">Tour</a></center>
-        </div>
-    </div>
-    <div class="lv-row">
-        <div class="lv-column padding-05 ">
-            <label class="opacity-05">Test case</label>
-            <textarea class="is-material is-dark input is-success"
-                      data-bind="value: testCase, valueUpdate: 'afterkeydown'"
-                      data-step="1" data-intro="Use this field for write your test case"
-                      placeholder="Write your test case text..."></textarea>
-        </div>
-    </div>
-    <div class="lv-row">
-        <div class="lv-column tablet-is-half padding-05 ">
-            <label class="opacity-05">Regex</label>
-            <textarea class="is-material is-info input is-success"
-                      data-bind="value: regexText, valueUpdate: 'afterkeydown'"
-                      data-step="2" data-intro="Write your regular expression here and we'll generate the escaped version for you to copy into your code"
-                      placeholder="Write your Java RegExp here..."></textarea>
-        </div>
-        <div class="lv-column tablet-is-half padding-05 ">
-            <label class="opacity-05">Escaped Regex</label>
-            <textarea class="is-material is-info input " data-bind="textInput:escapedRegexText"
-                      data-step="3" data-intro="Or if you prefer you can paste your expression from your code unescaped"></textarea>
-        </div>
-    </div>
-<!--    <div class="lv-row">
-        <div class="lv-column tablet-is-half padding-05 ">
-            <label class="opacity-05">Sample Value</label>
-            <p class="is-material is-info input " data-bind="text: generateExample,valueUpdate: 'input'"
-               data-step="5" data-intro="Here the plugin will try to generate a valid value for you"></p>
-        </div>
-    </div>-->
+    <body class="lv-row-multiple color-light is-fluid-container is-center">
+        <div class="mobile-is-block tablet-15 color-cloud overflow-y is-shadow-l-b container">
+            <div class="lv-row">
+                <div class="lv-column padding-05 ">
+                    <center><a class="lv-button is-info-outline btn is-primary btn-large btn-success" href="javascript:void(0);"
+                               onclick="javascript:introJs().start();">Tour</a></center>
+                </div>
+            </div>
+            <div class="lv-row">
+                <div class="lv-column padding-05 ">
+                    <label class="opacity-05">Test case</label>
+                    <textarea class="is-material is-dark input is-success"
+                              data-bind="value: testCase, valueUpdate: 'afterkeydown'"
+                              data-step="1" data-intro="Use this field for write your test case"
+                              placeholder="Write your test case text..."></textarea>
+                </div>
+            </div>
+            <div class="lv-row">
+                <div class="lv-column tablet-is-half padding-05 ">
+                    <label class="opacity-05">Regex</label>
+                    <textarea class="is-material is-info input is-success"
+                              data-bind="value: regexText, valueUpdate: 'afterkeydown'"
+                              data-step="2" data-intro="Write your regular expression here and we'll generate the escaped version for you to copy into your code"
+                              placeholder="Write your Java RegExp here..."></textarea>
+                </div>
+                <div class="lv-column tablet-is-half padding-05 ">
+                    <label class="opacity-05">Escaped Regex</label>
+                    <textarea class="is-material is-info input " data-bind="textInput:escapedRegexText"
+                              data-step="3" data-intro="Or if you prefer you can paste your expression from your code unescaped"></textarea>
+                </div>
+            </div>
+            <!--    <div class="lv-row">
+                    <div class="lv-column tablet-is-half padding-05 ">
+                        <label class="opacity-05">Sample Value</label>
+                        <p class="is-material is-info input " data-bind="text: generateExample,valueUpdate: 'input'"
+                           data-step="5" data-intro="Here the plugin will try to generate a valid value for you"></p>
+                    </div>
+                </div>-->
 
-    <div class="lv-row">
-        <div class="lv-column is-center padding-05">
-            <pre data-bind="text: matches() ? 'Match':'No match', valueUpdate: 'input',style: { color: matches() ? 'green' : 'red' }"
-                 data-step="4" data-intro="Here you can see if your expression matches the regex you provided"></pre>
-            <div class="lv-checkbox is-check"  data-step="5" data-intro="If you cant to test replacement click this checkbox">
-                <input id="testReplace" type="checkbox" data-bind="checked: displayReplacement"/>
-                <label for="testReplace"></label>
-                <span>Test Regex Replacement</span>
-                <!--<label for="testReplace" class="lv-checkbox">-->
-                <!--<input id="testReplace" type="checkbox" class="checkbox" data-bind="checked: displayReplacement"/>-->
-                <!--<span>Test Regex Replacement</span>-->
-                <!--</label>-->
+            <div class="lv-row">
+                <div class="lv-column is-center padding-05">
+                    <pre data-bind="text: matches() ? 'Match':'No match', valueUpdate: 'input',style: { color: matches() ? 'green' : 'red' }"
+                         data-step="4" data-intro="Here you can see if your expression matches the regex you provided"></pre>
+                    <div class="lv-checkbox is-check"  data-step="5" data-intro="If you want to test replacement click this checkbox">
+                        <input id="testReplace" type="checkbox" data-bind="checked: displayReplacement"/>
+                        <label for="testReplace"></label>
+                        <span>Test Regex Replacement</span>
+                        <!--<label for="testReplace" class="lv-checkbox">-->
+                        <!--<input id="testReplace" type="checkbox" class="checkbox" data-bind="checked: displayReplacement"/>-->
+                        <!--<span>Test Regex Replacement</span>-->
+                        <!--</label>-->
+                    </div>
+                </div>
+                <div class="lv-column is-center padding-05" data-step="6" data-intro="If you intend to find some text inside your test case click this checkbox">
+                    <div class="lv-checkbox is-check">
+                        <input id="testMatch" type="checkbox" data-bind="checked: displayMatches"/>
+                        <label for="testMatch"></label>
+                        <span>Show partial matches</span>
+                        <!--<label for="testMatch" class="lv-checkbox">-->
+                        <!--<input id="testMatch" type="checkbox" class="checkbox" data-bind="checked: displayMatches"/>-->
+                        <!--<span>Show partial matches</span>-->
+                        <!--</label>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="lv-row is-center padding-1">
+                <input class="lv-button is-info-outline btn is-primary" type="submit" value="calculate partial matches"
+                       data-step="7" data-intro="Need more than 1 value use this button to generate some more"
+                       data-bind="visible: displayMatches, click: allMatches">
+            </div>
+            <div class="lv-row">
+                <div data-bind="if: displayMatches" class="lv-column desktop-15 is-center padding-05">
+                    <label class="opacity-05">Partial matches</label>
+                    <ol data-bind="foreach: partialMatches">
+                        <li>
+                            <p data-bind="text: $data"></p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="lv-row">
+                <div data-bind="if: displayReplacement" class="lv-column padding-05 ">
+                    <label class="opacity-05">replacement regex</label>
+                    <textarea class="is-material is-success input"
+                              data-bind="value: replacementText, valueUpdate: 'afterkeydown'"
+                              placeholder="Write the replacement regex..."></textarea>
+                    <br>
+                    <pre data-bind="text: replaced"></pre>
+                </div>
+            </div>
+
+            <div class="lv-row">
+                <div class="lv-column is-center padding-05" data-step="8" data-intro="You can get the capture groups in case you want to extract info">
+                    <div class="lv-checkbox is-check"  >
+                        <input id="testGroups" type="checkbox" data-bind="checked: displayGroups"/>
+                        <label for="testGroups"></label>
+                        <span>Show groups</span>
+                        <!--<label for="testGroups" class="lv-checkbox">-->
+                        <!--<input id="testGroups" type="checkbox" data-bind="checked: displayGroups"/>-->
+                        <!--<span>Test Regex Replacement</span>-->
+                        <!--</label>-->
+                    </div>
+                </div>
+                <div class="lv-column is-center padding-05" data-step="9" data-intro="If you are testing use this experimental feature to generate some valid values">
+                    <div class="lv-checkbox is-check">
+                        <input id="testGeneration" type="checkbox" data-bind="checked: displayGeneration"/>
+                        <label for="testGeneration"></label>
+                        <span>Show generation</span>
+                        <!--<label for="testGeneration" class="lv-checkbox">-->
+                        <!--<input id="testGeneration" type="checkbox" class="checkbox" data-bind="checked: displayMatches"/>-->
+                        <!--<span>Show partial matches</span>-->
+                        <!--</label>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="lv-row is-center padding-1">
+                <input class="lv-button is-info-outline btn is-primary" type="submit" value="calculate capture groups"
+                       data-bind="visible: displayGroups, click: allGroups">
+            </div>
+            <div class="lv-row">
+                <div data-bind="if: displayGroups" class="lv-column desktop-15 is-center padding-05">
+                    <label class="opacity-05">Capture groups</label>
+                    <ol data-bind="foreach: groupsMatching">
+                        <li>
+                            <p data-bind="text: $data"></p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="lv-row is-center padding-1" data-bind="if: displayGeneration">
+                <input class="lv-button is-info-outline btn is-primary" type="submit" value="sample of possible values"
+                       data-bind="click: nPossibilities">
+            </div>
+            <div class="lv-row">
+                <div class="lv-column desktop-15 is-center padding-05" data-bind="if: displayGeneration">
+                    <label class="opacity-05">Possibilities</label>
+                    <ul data-bind="foreach: possibilities">
+                        <li>
+                            <p data-bind="text: $data"></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="lv-row">
+                <div class="lv-column is-center padding-05" data-step="9" data-intro="If you are testing use this experimental feature to generate some valid values">
+                    <div class="lv-checkbox is-check">
+                        <input id="codeGeneration" type="checkbox" data-bind="checked: displaySampleCode"/>
+                        <label for="codeGeneration">Generate code</label>
+                        <!--<label for="testGeneration" class="lv-checkbox">-->
+                        <!--<input id="testGeneration" type="checkbox" class="checkbox" data-bind="checked: displayMatches"/>-->
+                        <!--<span>Show partial matches</span>-->
+                        <!--</label>-->
+                    </div>
+                </div>
+                <!--is-center padding-1-->
+
+            </div>
+            <div class="lv-row">
+                <div class="lv-column desktop-15 is-center padding-05" data-bind="if: displaySampleCode">
+                    <label class="opacity-05">Sample code</label>
+                </div>
             </div>
         </div>
-        <div class="lv-column is-center padding-05" data-step="6" data-intro="If you intend to find some text inside your test case click this checkbox">
-            <div class="lv-checkbox is-check">
-                <input id="testMatch" type="checkbox" data-bind="checked: displayMatches"/>
-                <label for="testMatch"></label>
-                <span>Show partial matches</span>
-                <!--<label for="testMatch" class="lv-checkbox">-->
-                <!--<input id="testMatch" type="checkbox" class="checkbox" data-bind="checked: displayMatches"/>-->
-                <!--<span>Show partial matches</span>-->
-                <!--</label>-->
+        <div class="lv-row padding-2">
+            <div class="lv-column tablet-is-half is-text-center is-small opacity-05 container with-title"
+                 data-step="10" data-intro="Are you bored? You can change the appeareance to one of the avalible themes here">
+                <h3 class="title">Appeareance</h3>
+                <a href="#" class="radio" onclick="changeCSS('level.min.css', 0);">Levelcss</a>
+                <a href="#" class="radio" onclick="changeCSS('nes.min.css', 0);">Nes</a>
+                <a href="#" class="radio" onclick="changeCSS('bootstra.386.css', 0);">BOOTSTRA.386</a>
             </div>
         </div>
-    </div>
-
-    <div class="lv-row is-center padding-1">
-        <input class="lv-button is-info-outline btn is-primary" type="submit" value="calculate partial matches"
-               data-step="7" data-intro="Need more than 1 value use this button to generate some more"
-               data-bind="visible: displayMatches, click: allMatches">
-    </div>
-    <div class="lv-row">
-        <div data-bind="if: displayMatches" class="lv-column desktop-15 is-center padding-05">
-            <label class="opacity-05">Partial matches</label>
-            <ol data-bind="foreach: partialMatches">
-                <li>
-                    <p data-bind="text: $data"></p>
-                </li>
-            </ol>
-        </div>
-    </div>
-
-    <div class="lv-row">
-        <div data-bind="if: displayReplacement" class="lv-column padding-05 ">
-            <label class="opacity-05">replacement regex</label>
-            <textarea class="is-material is-success input"
-                      data-bind="value: replacementText, valueUpdate: 'afterkeydown'"
-                      placeholder="Write the replacement regex..."></textarea>
-            <br>
-            <pre data-bind="text: replaced"></pre>
-        </div>
-    </div>
-
-    <div class="lv-row">
-        <div class="lv-column is-center padding-05" data-step="8" data-intro="You can get the capture groups in case you want to extract info">
-            <div class="lv-checkbox is-check"  >
-                <input id="testGroups" type="checkbox" data-bind="checked: displayGroups"/>
-                <label for="testGroups"></label>
-                <span>Show groups</span>
-                <!--<label for="testGroups" class="lv-checkbox">-->
-                <!--<input id="testGroups" type="checkbox" data-bind="checked: displayGroups"/>-->
-                <!--<span>Test Regex Replacement</span>-->
-                <!--</label>-->
+        <div class="lv-row padding-2">
+            <span class="nes-logo"></span>
+            <div class="lv-column tablet-is-half is-text-center is-small opacity-05">
+                <div data-bind="with: 'https://www.github.com/javatlacati/'">
+                    Concept and development: <a data-bind="click: $root.openWebBrowser">javatlacati</a>.
+                </div>
+                <div data-bind="with: 'https://github.com/JorgeAntrax'">
+                    Some UI improvements: <a data-bind="click: $root.openWebBrowser">JorgeAntrax</a>
+                </div>
             </div>
         </div>
-        <div class="lv-column is-center padding-05" data-step="9" data-intro="If you are testing use this experimental feature to generate some valid values">
-            <div class="lv-checkbox is-check">
-                <input id="testGeneration" type="checkbox" data-bind="checked: displayGeneration"/>
-                <label for="testGeneration"></label>
-                <span>Show generation</span>
-                <!--<label for="testGeneration" class="lv-checkbox">-->
-                <!--<input id="testGeneration" type="checkbox" class="checkbox" data-bind="checked: displayMatches"/>-->
-                <!--<span>Show partial matches</span>-->
-                <!--</label>-->
-            </div>
-        </div>
-    </div>
+        <br>
+        <script src="intro.min.js"></script>
+        <script>
+            function changeCSS(cssFile, cssLinkIndex) {
 
-    <div class="lv-row is-center padding-1">
-        <input class="lv-button is-info-outline btn is-primary" type="submit" value="calculate capture groups"
-               data-bind="visible: displayGroups, click: allGroups">
-    </div>
-    <div class="lv-row">
-        <div data-bind="if: displayGroups" class="lv-column desktop-15 is-center padding-05">
-            <label class="opacity-05">Capture groups</label>
-            <ol data-bind="foreach: groupsMatching">
-                <li>
-                    <p data-bind="text: $data"></p>
-                </li>
-            </ol>
-        </div>
-    </div>
+                var oldlink = document.getElementsByClassName("style").item(cssLinkIndex);
 
-    <div class="lv-row is-center padding-1" data-bind="if: displayGeneration">
-        <input class="lv-button is-info-outline btn is-primary" type="submit" value="sample of possible values"
-               data-bind="click: nPossibilities">
-    </div>
-    <div class="lv-row">
-        <div class="lv-column desktop-15 is-center padding-05" data-bind="if: displayGeneration">
-            <label class="opacity-05">Possibilities</label>
-            <ul data-bind="foreach: possibilities">
-                <li>
-                    <p data-bind="text: $data"></p>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="lv-row padding-2">
-    <div class="lv-column tablet-is-half is-text-center is-small opacity-05 container with-title"
-         data-step="10" data-intro="Are you bored? You can change the appeareance to one of the avalible themes here">
-        <h3 class="title">Appeareance</h3>
-        <a href="#" class="radio" onclick="changeCSS('level.min.css', 0);">Levelcss</a>
-        <a href="#" class="radio" onclick="changeCSS('nes.min.css', 0);">Nes</a>
-        <a href="#" class="radio" onclick="changeCSS('bootstra.386.css', 0);">BOOTSTRA.386</a>
-    </div>
-</div>
-<div class="lv-row padding-2">
-    <span class="nes-logo"></span>
-    <div class="lv-column tablet-is-half is-text-center is-small opacity-05">
-        <div data-bind="with: 'https://www.github.com/javatlacati/'">
-            Concept and development: <a data-bind="click: $root.openWebBrowser">javatlacati</a>.
-        </div>
-        <div data-bind="with: 'https://github.com/JorgeAntrax'">
-            Some UI improvements: <a data-bind="click: $root.openWebBrowser">JorgeAntrax</a>
-        </div>
-    </div>
-</div>
-<br>
-<script src="intro.min.js"></script>
-<script>
-    function changeCSS(cssFile, cssLinkIndex) {
+                var newlink = document.createElement("link");
+                newlink.setAttribute("rel", "stylesheet");
+                newlink.setAttribute("type", "text/css");
+                newlink.setAttribute("class", "style");
+                newlink.setAttribute("href", cssFile);
 
-        var oldlink = document.getElementsByClassName("style").item(cssLinkIndex);
-
-        var newlink = document.createElement("link");
-        newlink.setAttribute("rel", "stylesheet");
-        newlink.setAttribute("type", "text/css");
-        newlink.setAttribute("class", "style");
-        newlink.setAttribute("href", cssFile);
-
-        document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
-    }
-</script>
-<!-- ${browser.bootstrap} -->
-</body>
+                document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+            }
+        </script>
+        <!-- ${browser.bootstrap} -->
+    </body>
 </html>

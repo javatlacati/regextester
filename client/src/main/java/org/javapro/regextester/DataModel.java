@@ -13,22 +13,28 @@ import net.java.html.json.Model;
 import net.java.html.json.Property;
 import net.java.html.json.ModelOperation;
 import org.javapro.regextester.js.PlatformServices;
-/** Model annotation generates class Data with
- * one message property, boolean property and read only words property
+
+/**
+ * Data model for holding application data.
  */
 @Model(targetId = "", className = "RegexTesting", instance = true, properties = {
-        @Property(name = "testCase", type = String.class)
-        , @Property(name = "regexText", type = String.class)
-        , @Property(name = "replacementText", type = String.class)
-        , @Property(name = "partialMatches", type = String.class, array = true)
-        , @Property(name = "possibilities", type = String.class, array = true)
-        , @Property(name = "groupsMatching", type = String.class, array = true)
-        , @Property(name = "displayReplacement", type = boolean.class)
-        , @Property(name = "displayMatches", type = boolean.class)
-        , @Property(name = "displayGroups", type = boolean.class)
-        , @Property(name = "displayGeneration", type = boolean.class)
+    @Property(name = "testCase", type = String.class)
+    , @Property(name = "regexText", type = String.class)
+    , @Property(name = "replacementText", type = String.class)
+    , @Property(name = "partialMatches", type = String.class, array = true)
+    , @Property(name = "possibilities", type = String.class, array = true)
+    , @Property(name = "groupsMatching", type = String.class, array = true)
+    , @Property(name = "displayReplacement", type = boolean.class)
+    , @Property(name = "displayMatches", type = boolean.class)
+    , @Property(name = "displayGroups", type = boolean.class)
+    , @Property(name = "displayGeneration", type = boolean.class)
+    , @Property(name = "displaySampleCode", type = boolean.class)
 })
 final class DataModel {
+
+    /**
+     * Platform dependent services.
+     */
     private PlatformServices services;
 
     public PlatformServices getServices() {
@@ -60,7 +66,6 @@ final class DataModel {
 //        Generex generex = new Generex(regexText);
 //        return generex.random();
 //    }
-
     @ComputedProperty
     static boolean matches(String regexText, String testCase) {
         //return testCase.matches(regexText);
@@ -132,7 +137,7 @@ final class DataModel {
      * Called when the page is ready.
      */
     static void onPageLoad(PlatformServices services) {
-        RegexTesting model = new RegexTesting("", "", "", false, false, false, false);
+        RegexTesting model = new RegexTesting("", "", "", false, false, false, false, false);
         model.setPreferences(services);
         model.applyBindings();
     }

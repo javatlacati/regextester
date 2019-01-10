@@ -16,9 +16,9 @@ public class BrowserMain {
         // default behavior is enough for now
 
         /**
-         * Opens a new browser at the specified url.
+         * Opens the specified URL.
          *
-         * @param url the specified url.
+         * @param url the specified URL.
          */
         @Override
         public void openWebBrowser(String url) {

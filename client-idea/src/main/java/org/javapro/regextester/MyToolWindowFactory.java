@@ -22,7 +22,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.prefs.Preferences;
 
 /**
  * Created by Javatlacati on 24/11/2018.
