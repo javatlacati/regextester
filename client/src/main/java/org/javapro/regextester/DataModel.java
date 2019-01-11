@@ -48,8 +48,12 @@ final class DataModel {
 
     @ComputedProperty
     static String replaced(String regexText, String testCase, String replacementText) {
-        Pattern pattern = Pattern.compile(regexText);
-        return pattern.matcher(testCase).replaceAll(replacementText);
+        try {
+            Pattern pattern = Pattern.compile(regexText);
+            return pattern.matcher(testCase).replaceAll(replacementText);
+        } catch (IndexOutOfBoundsException ioobe) {
+            return ioobe.getMessage();
+        }
     }
 
     @ComputedProperty(write = "setEscapedRegexText")

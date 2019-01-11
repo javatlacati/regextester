@@ -74,14 +74,33 @@ public class DataModelTest {
      * Replacement: <code>$1</code><br>
      */
     @Test
-    public void testFailedEscaping() {
+    public void testEscaping() {
         RegexTesting model = new RegexTesting("f.o,bar,hello,world",
                 "f\\.o,(bar)", "$1", new GeneratedCodeConfig(
                         JavaBasedLanguage.JAVA, RegexOperation.VALIDATION), "",
                 false, false, false, false, false);
         model.setTestCase("123");
         DataModel.setEscapedRegexText(model, "\\\\d+");
-        assertEquals("No group 1", model.getRegexText());
+        assertEquals("\\d+", model.getRegexText());
+        assertTrue(model.isMatches());
+    }
+
+    /**
+     * Tests error message displaying when replacement is requested for non
+     * existing group.
+     * <br>
+     * Input: <code>f.o,bar,hello,world</code><br>
+     * Regex: <code>\d+</code><br>
+     * Replacement: <code>$1</code><br>
+     */
+    @Test
+    public void testEscaping1() {
+        RegexTesting model = new RegexTesting("f.o,bar,hello,world",
+                "f\\.o,(bar)", "$1", new GeneratedCodeConfig(
+                JavaBasedLanguage.JAVA, RegexOperation.VALIDATION), "",
+                false, false, false, false, false);
+        DataModel.setEscapedRegexText(model, "\\\\d+");
+        assertEquals("\\d+", model.getRegexText());
         assertFalse(model.isMatches());
     }
 
@@ -105,6 +124,44 @@ public class DataModelTest {
         assertEquals("f\\\\.o,(bar)", DataModel.escapedRegexText(model.getRegexText()));
         DataModel.allGroups(model);
         assertEquals(Collections.singletonList("bar"), model.getGroupsMatching());
+    }
+
+    /**
+     * Tests capture groups for searching.
+     * <br>
+     * Input: <code>f.o,bar,hello,world</code><br>
+     * Regex: <code>f\.o,bar</code><br>
+     * Replacement: <code>$1</code><br>
+     * Expected replacement result: java.lang.IndexOutOfBoundsException: No group 1<br>
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testCapturingGroupReplacementNoGroupsInRegex() {
+        RegexTesting model = new RegexTesting("f.o,bar,hello,world",
+                "f\\.o,bar", "$1", new GeneratedCodeConfig(
+                JavaBasedLanguage.JAVA, RegexOperation.VALIDATION), "",
+                false, false, false, false, false);
+        assertFalse(model.isMatches());
+        assertEquals("No group 1", model.getReplaced());
+    }
+
+    /**
+     * Tests capture groups for searching.
+     * <br>
+     * Input: <code>f.o,bar,hello,world</code><br>
+     * Regex: <code>f\.o,bar</code><br>
+     * Replacement: <code>$1</code><br>
+     * Expected replacement result: java.lang.IndexOutOfBoundsException: No group 1<br>
+     */
+    @Test
+    public void testCapturingGroupNoGroupsInRegex() {
+        RegexTesting model = new RegexTesting("f.o,bar,hello,world",
+                "f\\.o,bar", "$1", new GeneratedCodeConfig(
+                JavaBasedLanguage.JAVA, RegexOperation.VALIDATION), "",
+                false, false, false, false, false);
+        assertFalse(model.isMatches());
+        assertEquals("f\\\\.o,bar", DataModel.escapedRegexText(model.getRegexText()));
+        DataModel.allGroups(model);
+        assertEquals(Collections.emptyList(), model.getGroupsMatching());
     }
 
     @Test
