@@ -1,43 +1,92 @@
 <idea-plugin>
     <id>org.javapro.idea</id>
     <name>Dukescript Java Regex Tester</name>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <vendor email="scherzo16@gmail.com" url="http://www.javapro.org">javatlacati from Java Pro</vendor>
 
     <description><![CDATA[
-      <h2>Visual interactive plugin using Dukescript</h2>
-      It has the following characteristics:
-      <ol>
-        <li><a href="https://www.regular-expressions.info/unicode.html">Unicode categories</a> support such as <pre>\p{Letter}</pre> or <pre>\p{InGreek}</pre></li>
-        <li>Pattern modifiers at regex such as:
-            <ol>
-                <li>case insensitive matching trough prefixing with <pre>(?i)</pre></li>
-            </ol>
+    <h2>An easy to use regular expressions tool (builder, tester, valid values generator)</h2>
+    It has the following characteristics:
+    <ol>
+        <li>Pasting of unescaped regular expression</li>
+        <li>Auto escape of regular expression</li>
+        <li>Testing for:
+            <ul>
+                <li>Replacement</li>
+                <li>Partial matching</li>
+                <li>Group capturing</li>
+                <li>Valid values generation</li>
+            </ul>
         </li>
-        <li>hexadecimal character matching such as <pre>[\x7F-\xFF]</pre></li>
-        <li>linebreaks trough <pre>\n</pre></li>
-      </ol>
-      <br>
-      <h2>Credits</h2>
-      <br>
-      <b>Concept and development:</b> Ruslan López Carro
-      <br>
-      <b>Some UI improvements:</b> Leonardo Quintana Juárez
-      <br>
-      <br>
-      If you want to support this plugin or contribute for my rehabilitation therapies don't hesitate to <a href="https://paypal.me/javatlacati">Donate</a>
-      <br>
-      <br>
-      This plugin was possible due the following technologies:
-      <ul>
-        <li><a href="http://dukescript.com/">Dukescript</a></li>
-        <li><a href="https://jorgeantrax.github.io/level-docs/">Level CSS</a></li>
-        <li><a href="https://bcrikko.github.io/NES.css/">NES CSS</a></li>
-        <li><a href="http://kristopolous.github.io/BOOTSTRA.386/">BOOTSTRA.386</a></li>
-        <li><a href="https://github.com/mifmif/Generex/">Generex</a></li>
+        <li>Code generation for JVM languages
+            <ul>
+                <li>Java</li>
+                <li>Kotlin</li>
+            </ul>
+        </li>
+        <li>The following java.util.regex API characteristics has been tested for support:
+            <ul>
+                <li>linebreaks trough
+                    <pre>\n</pre>
+                </li>
+                <li>hexadecimal character matching such as
+                    <pre>[\x7F-\xFF]</pre>
+                </li>
+                <li>
+                    <a href="https://www.regular-expressions.info/unicode.html">Unicode categories</a>
+                    support such as <pre>\p{Letter}</pre> or
+                    <pre>\p{InGreek}</pre>
+                </li>
+                <li>Pattern modifiers at regex such as:
+                    <ol>
+                        <li>case insensitive matching mode trough
+                            <pre>(?i)</pre>
+                        </li>
+                        <li>dot-all mode
+                            <pre>(?s)</pre>
+                        </li>
+                        <li>comments mode
+                            <pre>(?x)</pre>
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <br>
+    <h2>Credits</h2>
+    <br>
+    <b>Concept and development:</b>
+    Ruslan López Carro
+    <br>
+    <b>Some UI improvements:</b>
+    Leonardo Quintana Juárez
+    <br>
+    <br>
+    If you want to support this plugin or contribute for my rehabilitation therapies don't hesitate to
+    <a href="https://paypal.me/javatlacati">Donate</a>
+    <br>
+    <br>
+    This plugin was possible due the following technologies:
+    <ul>
+        <li>
+            <a href="http://dukescript.com/">Dukescript</a>
+        </li>
+        <li>
+            <a href="https://jorgeantrax.github.io/level-docs/">Level CSS</a>
+        </li>
+        <li>
+            <a href="https://bcrikko.github.io/NES.css/">NES CSS</a>
+        </li>
+        <li>
+            <a href="http://kristopolous.github.io/BOOTSTRA.386/">BOOTSTRA.386</a>
+        </li>
+        <li>
+            <a href="https://github.com/mifmif/Generex/">Generex</a>
+        </li>
         <li>IntelliJ IDEA SDK from Jetbrains</li>
         <li>Open JavaFx</li>
-      </ul>
+    </ul>
     ]]></description>
 
     <change-notes><![CDATA[

@@ -14,7 +14,90 @@
     <packaging>nbm-application</packaging>
 
     <name>regextester Client for NetBeans</name>
-    <description><![CDATA[Click the button in your toolbar to see an Interactive Java regex tester.]]></description>
+    <description><![CDATA[Click the button in your toolbar to see an Interactive Java regex tester.
+    <h2>An easy to use regular expressions tool (builder, tester, valid values generator)</h2>
+    It has the following characteristics:
+    <ol>
+        <li>Pasting of unescaped regular expression</li>
+        <li>Auto escape of regular expression</li>
+        <li>Testing for:
+            <ul>
+                <li>Replacement</li>
+                <li>Partial matching</li>
+                <li>Group capturing</li>
+                <li>Valid values generation</li>
+            </ul>
+        </li>
+        <li>Code generation for JVM languages
+            <ul>
+                <li>Java</li>
+                <li>Kotlin</li>
+            </ul>
+        </li>
+        <li>The following java.util.regex API characteristics has been tested for support:
+            <ul>
+                <li>linebreaks trough
+                    <pre>\n</pre>
+                </li>
+                <li>hexadecimal character matching such as
+                    <pre>[\x7F-\xFF]</pre>
+                </li>
+                <li>
+                    <a href="https://www.regular-expressions.info/unicode.html">Unicode categories</a>
+                    support such as <pre>\p{Letter}</pre> or
+                    <pre>\p{InGreek}</pre>
+                </li>
+                <li>Pattern modifiers at regex such as:
+                    <ol>
+                        <li>case insensitive matching mode trough
+                            <pre>(?i)</pre>
+                        </li>
+                        <li>dot-all mode
+                            <pre>(?s)</pre>
+                        </li>
+                        <li>comments mode
+                            <pre>(?x)</pre>
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <br>
+    <h2>Credits</h2>
+    <br>
+    <b>Concept and development:</b>
+    Ruslan López Carro
+    <br>
+    <b>Some UI improvements:</b>
+    Leonardo Quintana Juárez
+    <br>
+    <br>
+    If you want to support this plugin or contribute for my rehabilitation therapies don't hesitate to
+    <a href="https://paypal.me/javatlacati">Donate</a>
+    <br>
+    <br>
+    This plugin was possible due the following technologies:
+    <ul>
+        <li>
+            <a href="http://dukescript.com/">Dukescript</a>
+        </li>
+        <li>
+            <a href="https://jorgeantrax.github.io/level-docs/">Level CSS</a>
+        </li>
+        <li>
+            <a href="https://bcrikko.github.io/NES.css/">NES CSS</a>
+        </li>
+        <li>
+            <a href="http://kristopolous.github.io/BOOTSTRA.386/">BOOTSTRA.386</a>
+        </li>
+        <li>
+            <a href="https://github.com/mifmif/Generex/">Generex</a>
+        </li>
+        <li>IntelliJ IDEA SDK from Jetbrains</li>
+        <li>Open JavaFx</li>
+    </ul>
+]]></description>
     <developers>
         <developer>
             <name>Ruslan López Carro</name>
