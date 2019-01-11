@@ -155,7 +155,8 @@
                 </executions>
                 <configuration>
                     <excludes>
-                        <exclude>**/**/RegexTesting*</exclude>   
+                        <exclude>**/**/RegexTesting*</exclude>
+                        <exclude>**/**/GeneratedCodeConfig*</exclude>
                     </excludes>
                 </configuration>
             </plugin>
