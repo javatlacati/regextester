@@ -6,9 +6,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
+        <link id="theme" type="text/css" rel="stylesheet" href="level.min.css">
         <link type="text/css" rel="stylesheet" href="introjs.css">
-        <link type="text/css" class="style" rel="stylesheet" href="level.min.css">
+        <!--<link type="text/css" rel="stylesheet" href="index.css">-->
     </head>
 
     <body class="lv-row-multiple color-light is-fluid-container is-center">
@@ -22,16 +22,22 @@
             <div class="lv-row">
                 <div class="lv-column padding-05 ">
                     <label class="opacity-05">Test case</label>
-                    <textarea class="is-material is-dark input is-success"
-                              data-bind="value: testCase, valueUpdate: 'afterkeydown'"
-                              data-step="1" data-intro="Use this field for write your test case"
-                              placeholder="Write your test case text..."></textarea>
+<!--                    <div class="container">
+                        <div id="backdrop" class="backdrop">
+                            <div id="highlights" class="highlights">
+                            </div>
+                        </div>-->
+                        <textarea id="txtTestCase" class="is-material is-dark input is-success"
+                                  data-bind="value: testCase, valueUpdate: 'afterkeydown'"
+                                  data-step="1" data-intro="Use this field for write your test case"
+                                  placeholder="Write your test case text..." oninput="handleInput()" onscroll="handleScroll()"></textarea>
+                    <!--</div>-->
                 </div>
             </div>
             <div class="lv-row">
                 <div class="lv-column tablet-is-half padding-05 ">
                     <label class="opacity-05">Regex</label>
-                    <textarea class="is-material is-info input is-success"
+                    <textarea id="regexText" class="is-material is-info input is-success"
                               data-bind="value: regexText, valueUpdate: 'afterkeydown'"
                               data-step="2" data-intro="Write your regular expression here and we'll generate the escaped version for you to copy into your code"
                               placeholder="Write your Java RegExp here..."></textarea>
@@ -42,13 +48,6 @@
                               data-step="3" data-intro="Or if you prefer you can paste your expression from your code unescaped"></textarea>
                 </div>
             </div>
-            <!--    <div class="lv-row">
-                    <div class="lv-column tablet-is-half padding-05 ">
-                        <label class="opacity-05">Sample Value</label>
-                        <p class="is-material is-info input " data-bind="text: generateExample,valueUpdate: 'input'"
-                           data-step="5" data-intro="Here the plugin will try to generate a valid value for you"></p>
-                    </div>
-                </div>-->
 
             <div class="lv-row">
                 <div class="lv-column is-center padding-05">
@@ -197,9 +196,9 @@
             <div class="lv-column tablet-is-half is-text-center is-small opacity-05 container with-title"
                  data-step="10" data-intro="Are you bored? You can change the appeareance to one of the avalible themes here">
                 <h3 class="title">Appeareance</h3>
-                <a href="#" class="radio" onclick="changeCSS('level.min.css', 0);">Levelcss</a>
-                <a href="#" class="radio" onclick="changeCSS('nes.min.css', 0);">Nes</a>
-                <a href="#" class="radio" onclick="changeCSS('bootstra.386.css', 0);">BOOTSTRA.386</a>
+                <a href="#" class="radio" onclick="changeCSS('level.min.css');">Levelcss</a>
+                <a href="#" class="radio" onclick="changeCSS('nes.min.css');">Nes</a>
+                <a href="#" class="radio" onclick="changeCSS('bootstra.386.css');">BOOTSTRA.386</a>
             </div>
         </div>
         <div class="lv-row padding-2">
@@ -215,15 +214,16 @@
         </div>
         <br>
         <script src="intro.min.js"></script>
+<!--        <script src="index.js"></script>-->
         <script>
-            function changeCSS(cssFile, cssLinkIndex) {
+            function changeCSS(cssFile) {
 
-                var oldlink = document.getElementsByClassName("style").item(cssLinkIndex);
+                var oldlink = document.getElementById("theme");//document.getElementsByClassName("style").item(cssLinkIndex);
 
                 var newlink = document.createElement("link");
                 newlink.setAttribute("rel", "stylesheet");
                 newlink.setAttribute("type", "text/css");
-                newlink.setAttribute("class", "style");
+                newlink.setAttribute("id","theme")
                 newlink.setAttribute("href", cssFile);
 
                 document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
