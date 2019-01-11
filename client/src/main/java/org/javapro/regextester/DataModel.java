@@ -1,6 +1,7 @@
 package org.javapro.regextester;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,7 +22,8 @@ import org.javapro.regextester.js.PlatformServices;
     @Property(name = "testCase", type = String.class)
     , @Property(name = "regexText", type = String.class)
     , @Property(name = "replacementText", type = String.class)
-    , @Property(name = "selectedLanguage", type = JavaBasedLanguage.class)
+    ,@Property(name = "generatedCodeConfig", type = GeneratedCodeConfig.class)
+    , @Property(name = "generatedCode", type = String.class)
     , @Property(name = "partialMatches", type = String.class, array = true)
     , @Property(name = "possibilities", type = String.class, array = true)
     , @Property(name = "groupsMatching", type = String.class, array = true)
@@ -31,6 +33,7 @@ import org.javapro.regextester.js.PlatformServices;
     , @Property(name = "displayGeneration", type = boolean.class)
     , @Property(name = "displaySampleCode", type = boolean.class)
     , @Property(name = "languages", type = JavaBasedLanguage.class, array = true)
+    , @Property(name = "operations", type = RegexOperation.class, array = true)
 })
 final class DataModel {
 
@@ -52,6 +55,170 @@ final class DataModel {
     @ComputedProperty(write = "setEscapedRegexText")
     static String escapedRegexText(String regexText) {
         return regexText.replaceAll("[\\\\]", "\\\\\\\\").replaceAll("\"", "\\\\\"");
+    }
+
+    @Function
+    void generateCode(RegexTesting model) {
+        switch (model.getGeneratedCodeConfig().getSelectedLanguage()) {
+            case JAVA:
+                model.setGeneratedCode(generateJavaCode(model.getGeneratedCodeConfig().getSelectedOperation(), model.getRegexText(), model.getTestCase(), model.getReplacementText()));
+                break;
+            case KOTLIN:
+                model.setGeneratedCode(generateKotlinCode(model.getGeneratedCodeConfig().getSelectedOperation(), model.getRegexText(), model.getTestCase(), model.getReplacementText()));
+                break;
+            default:
+                break;
+        }
+    }
+
+//    @ComputedProperty
+//    static String generateCode(GeneratedCodeConfig generatedCodeConfig, String regexText, String testCase,String replacementText) {
+//        switch (generatedCodeConfig.getSelectedLanguage()) {
+//            case JAVA:
+//                return generateJavaCode(generatedCodeConfig.getSelectedOperation(), regexText, testCase,replacementText);
+//            case KOTLIN:
+//                return generateKotlinCode(generatedCodeConfig.getSelectedOperation(), regexText, testCase,replacementText);
+//            default:
+//                return "";
+//        }
+//    }
+    private static String generateKotlinCode(RegexOperation selectedOperation, String regexText, String testCase, String replacementText) {
+        switch (selectedOperation) {
+            case VALIDATION:
+                return generateKotlinValidationCode(regexText, testCase);
+            case SEARCHING:
+                return generateKotlinSearchingCode(regexText, testCase);
+            case SPLITTING:
+                return generateKotlinSplittingCode(regexText, testCase);
+            case REPLACEMENT:
+                return generateKotlinReplacementCode(regexText, testCase, replacementText);
+            default:
+                return "";
+        }
+    }
+
+    private static String generateJavaCode(RegexOperation selectedOperation, String regexText, String testCase, String replacementText) {
+        switch (selectedOperation) {
+            case VALIDATION:
+                return generateJavaValidationCode(regexText, testCase);
+            case SEARCHING:
+                return generateJavaSearchingCode(regexText, testCase);
+            case SPLITTING:
+                return generateJavaSplittingCode(regexText, testCase);
+            case REPLACEMENT:
+                return generateJavaReplacementCode(regexText, testCase, replacementText);
+            default:
+                return "";
+        }
+    }
+
+    private static String generateJavaSearchingCode(String regexText, String testCase) {
+        return new StringBuilder("List<String> allGroups = new ArrayList<>();\n")
+                .append("try {\n")
+                .append("   Matcher m = Pattern.compile(\"")
+                .append(escapedRegexText(regexText))
+                .append("\").matcher(\"")
+                .append(escapedRegexText(testCase))
+                .append("\");\n")
+                .append("   int groupsNum = m.groupCount();\n")
+                .append("   while (m.find()) {\n")
+                .append("       for (int i = 1; i <= groupsNum; i++) {\n")
+                .append("           try {\n")
+                .append("               String group = m.group(i);\n")
+                .append("               allGroups.add(group);\n")
+                .append("           } catch (IllegalStateException ise) {\n")
+                .append("               allGroups.add(\"No Matches\");\n")
+                .append("           }\n")
+                .append("       }\n")
+                .append("   }\n")
+                .append("} catch (PatternSyntaxException pse) {\n")
+                .append("   allGroups.add(pse.getMessage());\n")
+                .append("}")
+                .toString();
+
+    }
+
+    private static String generateKotlinSearchingCode(String regexText, String testCase) {
+        return new StringBuilder("val allGroups = ArrayList()\n")
+                .append("try {\n")
+                .append("    val m = Pattern.compile(\"")
+                .append(escapedRegexText(regexText))
+                .append("\").matcher(\"")
+                .append(escapedRegexText(testCase))
+                .append("\")\n")
+                .append("   val groupsNum = m.groupCount()\n")
+                .append("   while (m.find()) {\n")
+                .append("       for (i in 1..groupsNum) {\n")
+                .append("           try {\n")
+                .append("               val group = m.group(i)\n")
+                .append("               allGroups.add(group)\n")
+                .append("           } catch (ise:IllegalStateException) {\n")
+                .append("               allGroups.add(\"No Matches\")\n")
+                .append("           }\n")
+                .append("       }\n")
+                .append("   }\n")
+                .append("} catch (pse:PatternSyntaxException) {\n")
+                .append("   allGroups.add(pse.getMessage())\n")
+                .append("}")
+                .toString();
+    }
+
+    private static String generateJavaSplittingCode(String regexText, String testCase) {
+        return new StringBuilder("Pattern pattern = Pattern.compile(\"")
+                .append(escapedRegexText(regexText))
+                .append("\");\nString[] splitted= pattern.split(\"")
+                .append(escapedRegexText(testCase))
+                .append("\",0);")
+                .toString();
+    }
+
+    private static String generateKotlinSplittingCode(String regexText, String testCase) {
+        return new StringBuilder("var pattern = Pattern.compile(\"")
+                .append(escapedRegexText(regexText))
+                .append("\")\nvar splitted= pattern.split(\"")
+                .append(escapedRegexText(testCase))
+                .append("\",0)")
+                .toString();
+    }
+
+    private static String generateJavaReplacementCode(String regexText, String testCase, String replacementText) {
+        return new StringBuilder("Pattern pattern = Pattern.compile(\"")
+                .append(escapedRegexText(regexText))
+                .append("\");\nString replaced = pattern.matcher(\"")
+                .append(escapedRegexText(testCase))
+                .append("\").replaceAll(")
+                .append(replacementText)
+                .append(");").toString();
+    }
+
+    private static String generateKotlinReplacementCode(String regexText, String testCase, String replacementText) {
+        return new StringBuilder("var pattern = Pattern.compile(\"")
+                .append(escapedRegexText(regexText))
+                .append("\")\nvar replaced = pattern.matcher(\"")
+                .append(escapedRegexText(testCase))
+                .append("\").replaceAll(")
+                .append(replacementText)
+                .append(")").toString();
+    }
+
+    private static String generateJavaValidationCode(String regexText, String testCase) {
+        StringBuilder sb
+                = new StringBuilder("Pattern pattern = Pattern.compile(\"")
+                        .append(escapedRegexText(regexText))
+                        .append("\");\nboolean isValid = pattern.matcher(\"")
+                        .append(escapedRegexText(testCase))
+                        .append("\").matches();");
+        return sb.toString();
+    }
+
+    private static String generateKotlinValidationCode(String regexText, String testCase) {
+        StringBuilder sb
+                = new StringBuilder("var pattern = Pattern.compile(\"")
+                        .append(escapedRegexText(regexText))
+                        .append("\")\nvar isValid = pattern.matcher(\"")
+                        .append(escapedRegexText(testCase))
+                        .append("\").matches()");
+        return sb.toString();
     }
 
     static void setEscapedRegexText(RegexTesting model, String value) {
@@ -144,13 +311,11 @@ final class DataModel {
      * Called when the page is ready.
      */
     static void onPageLoad(PlatformServices services) {
-        RegexTesting model = new RegexTesting("", "", "", JavaBasedLanguage.JAVA,false, false, false, false, false);
+        RegexTesting model = new RegexTesting("", "", "", new GeneratedCodeConfig(JavaBasedLanguage.JAVA, RegexOperation.VALIDATION), "", false, false, false, false, false);
         model.setPreferences(services);
         model.applyBindings();
         List<JavaBasedLanguage> languages = JavaBasedLanguage.supportedLanguages();
-        for (JavaBasedLanguage language : languages) {
-            System.out.println(language);
-        }
         model.getLanguages().addAll(languages);
+        model.getOperations().addAll(Arrays.asList(RegexOperation.values()));
     }
 }

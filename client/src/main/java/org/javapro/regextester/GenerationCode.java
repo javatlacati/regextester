@@ -23,13 +23,13 @@ import net.java.html.json.Property;
  *
  * @author ruslan.lopez
  */
- /**
-     * Data model for holding configuration needed to generate sample code.
-     */
-    @Model(targetId = "", className = "GeneratedCode", instance = false, properties = {
-        @Property(name = "language", type = JavaBasedLanguage.class)
-        , @Property(name = "operation", type = RegexOperation.class)
-    })
-    class GenerationCode {
+/**
+ * Data model for holding configuration needed to generate sample code.
+ */
+@Model(className = "GeneratedCodeConfig", instance = false, properties = {
+    @Property(name = "selectedLanguage", type = JavaBasedLanguage.class, mutable = true)
+    , @Property(name = "selectedOperation", type = RegexOperation.class, mutable = true)
+})
+public class GenerationCode {
 
-    }
+}

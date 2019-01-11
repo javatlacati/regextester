@@ -17,22 +17,25 @@ import static org.junit.Assert.*;
  */
 @RunWith(BrowserRunner.class)
 public class DataModelTest {
-    
-    private class MockedPLatformServices extends PlatformServices{
+
+    private class MockedPLatformServices extends PlatformServices {
 
         @Override
         public Set<String> nPossibilities(String regexText) {
-            return null; //To change body of generated methods, choose Tools | Templates.
+            return null;
         }
-        
+
     }
-    
+
     @Test
     public void testNoGeneratedPossibilities() {
-        RegexTesting model = new RegexTesting("", "", "", JavaBasedLanguage.JAVA,false, false, false, false, false);
-        PlatformServices mockedServices =new MockedPLatformServices();
+        RegexTesting model = new RegexTesting("", "", "",
+                new GeneratedCodeConfig(JavaBasedLanguage.JAVA,
+                        RegexOperation.VALIDATION), "", false, false, false, false,
+                false);
+        PlatformServices mockedServices = new MockedPLatformServices();
         model.setPreferences(mockedServices);
-        DataModel dm= new DataModel();
+        DataModel dm = new DataModel();
         dm.setPreferences(model, mockedServices);
         dm.nPossibilities(model);
         assertEquals(0, model.getPossibilities().size());
@@ -42,22 +45,29 @@ public class DataModelTest {
 
     @Test
     public void testEscapingBackslash() {
-        RegexTesting model = new RegexTesting("f.o,bar,hello,world", "f\\.o,(bar)", "$1",JavaBasedLanguage.JAVA, false, false, false, false, false);
+        RegexTesting model = new RegexTesting("f.o,bar,hello,world",
+                "f\\.o,(bar)", "$1", new GeneratedCodeConfig(
+                        JavaBasedLanguage.JAVA, RegexOperation.VALIDATION), "",
+                false, false, false, false, false);
         model.setTestCase("123");
         model.setReplacementText("");
         DataModel.setEscapedRegexText(model, "\\\\d+");
         assertEquals("\\d+", model.getRegexText());
         assertTrue(model.isMatches());
     }
-    
+
     @Test
     public void testEscapingQuotes() {
-        RegexTesting model = new RegexTesting("f.o,bar,hello,world", "\"[Hh](ello|i)\"", "", JavaBasedLanguage.JAVA,false, false, false, false, false);
+        RegexTesting model = new RegexTesting("f.o,bar,hello,world",
+                "\"[Hh](ello|i)\"", "", new GeneratedCodeConfig(
+                        JavaBasedLanguage.JAVA, RegexOperation.VALIDATION), "",
+                false, false, false, false, false);
         assertEquals("\\\"[Hh](ello|i)\\\"", model.getEscapedRegexText());
     }
 
     /**
-     * Tests error message displaying when replacement is requested for non existing group.
+     * Tests error message displaying when replacement is requested for non
+     * existing group.
      * <br>
      * Input: <code>f.o,bar,hello,world</code><br>
      * Regex: <code>\d+</code><br>
@@ -65,7 +75,10 @@ public class DataModelTest {
      */
     @Test
     public void testFailedEscaping() {
-        RegexTesting model = new RegexTesting("f.o,bar,hello,world", "f\\.o,(bar)", "$1", JavaBasedLanguage.JAVA,false, false, false, false, false);
+        RegexTesting model = new RegexTesting("f.o,bar,hello,world",
+                "f\\.o,(bar)", "$1", new GeneratedCodeConfig(
+                        JavaBasedLanguage.JAVA, RegexOperation.VALIDATION), "",
+                false, false, false, false, false);
         model.setTestCase("123");
         DataModel.setEscapedRegexText(model, "\\\\d+");
         assertEquals("No group 1", model.getRegexText());
@@ -83,7 +96,10 @@ public class DataModelTest {
      */
     @Test
     public void testCapturingGroup() {
-        RegexTesting model = new RegexTesting("f.o,bar,hello,world", "f\\.o,(bar)", "$1",JavaBasedLanguage.JAVA, false, false, false, false, false);
+        RegexTesting model = new RegexTesting("f.o,bar,hello,world",
+                "f\\.o,(bar)", "$1", new GeneratedCodeConfig(
+                        JavaBasedLanguage.JAVA, RegexOperation.VALIDATION), "",
+                false, false, false, false, false);
         assertFalse(model.isMatches());
         assertEquals("bar,hello,world", model.getReplaced());
         assertEquals("f\\\\.o,(bar)", DataModel.escapedRegexText(model.getRegexText()));
@@ -93,7 +109,10 @@ public class DataModelTest {
 
     @Test
     public void testGreedyOption() {
-        RegexTesting model = new RegexTesting("humbapumpa jim", ".*(jim|joe).*", "", JavaBasedLanguage.JAVA,false, false, false, false, false);
+        RegexTesting model = new RegexTesting("humbapumpa jim", ".*(jim|joe).*",
+                "", new GeneratedCodeConfig(JavaBasedLanguage.JAVA,
+                        RegexOperation.VALIDATION), "", false, false, false, false,
+                false);
         assertTrue(model.isMatches());
         DataModel.allGroups(model);
         assertEquals(Collections.singletonList("jim"), model.getGroupsMatching());
@@ -109,7 +128,10 @@ public class DataModelTest {
      */
     @Test
     public void testUnicode() {
-        RegexTesting model = new RegexTesting("abcdefghijkTYYtyyQ", "(\\p{Lu})", "_",JavaBasedLanguage.JAVA, true, false, false, false, false);
+        RegexTesting model = new RegexTesting("abcdefghijkTYYtyyQ",
+                "(\\p{Lu})", "_", new GeneratedCodeConfig(
+                        JavaBasedLanguage.JAVA, RegexOperation.VALIDATION), "",
+                true, false, false, false, false);
         assertFalse(model.isMatches());
         assertEquals("(\\\\p{Lu})", DataModel.escapedRegexText(model.getRegexText()));
         assertEquals("abcdefghijk___tyy_", model.getReplaced());
@@ -127,7 +149,10 @@ public class DataModelTest {
      */
     @Test
     public void testUnicodeLookahead() {
-        RegexTesting model = new RegexTesting("abcdefghijkTYYtyyQ", "(?=\\p{Lu})", "_",JavaBasedLanguage.JAVA, true, false, false, false, false);
+        RegexTesting model = new RegexTesting("abcdefghijkTYYtyyQ",
+                "(?=\\p{Lu})", "_", new GeneratedCodeConfig(
+                        JavaBasedLanguage.JAVA, RegexOperation.VALIDATION), "",
+                true, false, false, false, false);
         assertFalse(model.isMatches());
         assertEquals("(?=\\\\p{Lu})", DataModel.escapedRegexText(model.getRegexText()));
         assertEquals("abcdefghijk_T_Y_Ytyy_Q", model.getReplaced());
