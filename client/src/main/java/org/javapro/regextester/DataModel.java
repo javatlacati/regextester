@@ -21,6 +21,7 @@ import org.javapro.regextester.js.PlatformServices;
     @Property(name = "testCase", type = String.class)
     , @Property(name = "regexText", type = String.class)
     , @Property(name = "replacementText", type = String.class)
+    , @Property(name = "selectedLanguage", type = JavaBasedLanguage.class)
     , @Property(name = "partialMatches", type = String.class, array = true)
     , @Property(name = "possibilities", type = String.class, array = true)
     , @Property(name = "groupsMatching", type = String.class, array = true)
@@ -29,6 +30,7 @@ import org.javapro.regextester.js.PlatformServices;
     , @Property(name = "displayGroups", type = boolean.class)
     , @Property(name = "displayGeneration", type = boolean.class)
     , @Property(name = "displaySampleCode", type = boolean.class)
+    , @Property(name = "languages", type = JavaBasedLanguage.class, array = true)
 })
 final class DataModel {
 
@@ -73,6 +75,11 @@ final class DataModel {
         return pattern.matcher(testCase).matches();
     }
 
+    /*@Function
+    static void supportedLanguages(RegexTesting model){
+        model.getLanguages().clear();
+        
+    }*/
     @Function
     static void allMatches(RegexTesting model) {
         List<String> allMatches = new ArrayList<>();
@@ -137,8 +144,13 @@ final class DataModel {
      * Called when the page is ready.
      */
     static void onPageLoad(PlatformServices services) {
-        RegexTesting model = new RegexTesting("", "", "", false, false, false, false, false);
+        RegexTesting model = new RegexTesting("", "", "", JavaBasedLanguage.JAVA,false, false, false, false, false);
         model.setPreferences(services);
         model.applyBindings();
+        List<JavaBasedLanguage> languages = JavaBasedLanguage.supportedLanguages();
+        for (JavaBasedLanguage language : languages) {
+            System.out.println(language);
+        }
+        model.getLanguages().addAll(languages);
     }
 }

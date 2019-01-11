@@ -174,7 +174,14 @@
             </div>
             <div class="lv-row">
                 <div class="lv-column desktop-15 is-center padding-05" data-bind="if: displaySampleCode">
+                    <select data-bind="options: languages, value: selectedLanguage"></select>
+<!--                    <optgroup data-bind="">
+                        <option></option>
+                    </optgroup>-->
                     <label class="opacity-05">Sample code</label>
+                    <textarea class="is-material is-dark input is-success"
+                              data-bind="value: selectedLanguage">
+                              </textarea>
                 </div>
             </div>
         </div>

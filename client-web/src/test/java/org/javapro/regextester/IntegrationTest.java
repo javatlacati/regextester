@@ -68,7 +68,7 @@ import org.junit.runner.RunWith;
 public class IntegrationTest {
     @Test
     public void testUIModelUI() {
-        RegexTesting model = new RegexTesting("f.o,bar,hello,world", ",", "_", false, false, false,false, false);
+        RegexTesting model = new RegexTesting("f.o,bar,hello,world", ",", "_",JavaBasedLanguage.JAVA, false, false, false,false, false);
         model.applyBindings();
     }
 }

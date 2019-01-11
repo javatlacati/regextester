@@ -16,15 +16,48 @@
  */
 package org.javapro.regextester;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author ruslan.lopez
  */
 public enum JavaBasedLanguage {
-    JAVA
-    , KOTLIN
-    // , GROOVY
-    // SCALA
-    //CLOJURE
-    // JAVA_JS //that means Bison or Nashorn ot whatever Java implemented JS compatible versión
+    JAVA("JAVA")
+    , KOTLIN("KOTLIN");
+//     , GROOVY("GROOVY")
+//    , SCALA("SCALA")
+//    ,CLOJURE("CLOJURE")
+//    ,JAVA_JS("JAVA_JS") //that means Bison or Nashorn ot whatever Java implemented JS compatible versión
+
+    private final String name;
+
+    private JavaBasedLanguage(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public JavaBasedLanguage languageFromString(String allegedName) {
+        JavaBasedLanguage[] validValues = JavaBasedLanguage.values();
+        for (JavaBasedLanguage validValue : validValues) {
+            if (validValue.toString().equalsIgnoreCase(allegedName)) {
+                return validValue;
+            }
+        }
+        throw new IllegalArgumentException("Specified language doesn't exist yet");
+    }
+    
+    public static List<JavaBasedLanguage> supportedLanguages(){
+        JavaBasedLanguage[] validValues = JavaBasedLanguage.values();
+        List<JavaBasedLanguage> result = new ArrayList<>(validValues.length);
+        for (JavaBasedLanguage validValue : validValues) {
+            result.add(validValue);
+        }
+        return result;
+    }
 }
