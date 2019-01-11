@@ -86,7 +86,10 @@
         </li>
         <li>IntelliJ IDEA SDK from Jetbrains</li>
         <li>Open JavaFx</li>
+        <li>NetBeans Platform</li>
     </ul>
+    <h2>Contribute</h2>
+    <a href="https://github.com/javatlacati/regextester">Source Code</a>
     ]]></description>
 
     <change-notes><![CDATA[
