@@ -67,7 +67,7 @@ final class DataModel {
     }
 
     @Function
-    void generateCode(RegexTesting model) {
+    static void generateCode(RegexTesting model) {
         switch (model.getGeneratedCodeConfig().getSelectedLanguage()) {
             case JAVA:
                 model.setGeneratedCode(generateJavaCode(model.getGeneratedCodeConfig().getSelectedOperation(), model.getRegexText(), model.getTestCase(), model.getReplacementText()));

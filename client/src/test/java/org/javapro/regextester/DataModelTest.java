@@ -19,7 +19,6 @@ import static org.junit.Assert.*;
 public class DataModelTest {
 
     private class MockedPLatformServices extends PlatformServices {
-
         @Override
         public Set<String> nPossibilities(String regexText) {
             return null;
@@ -47,13 +46,19 @@ public class DataModelTest {
     public void testEscapingBackslash() {
         RegexTesting model = new RegexTesting("f.o,bar,hello,world",
                 "f\\.o,(bar)", "$1", new GeneratedCodeConfig(
-                        JavaBasedLanguage.JAVA, RegexOperation.VALIDATION), "",
+                        JavaBasedLanguage.JAVA, RegexOperation.REPLACEMENT), "",
                 false, false, false, false, false);
         model.setTestCase("123");
         model.setReplacementText("");
         DataModel.setEscapedRegexText(model, "\\\\d+");
         assertEquals("\\d+", model.getRegexText());
         assertTrue(model.isMatches());
+        DataModel.generateCode(model);
+        assertEquals("Pattern pattern = Pattern.compile(\"\\\\d+\");\nString replaced = pattern.matcher(\"123\").replaceAll(\"\");",model.getGeneratedCode());
+        model.setGeneratedCodeConfig(new GeneratedCodeConfig(JavaBasedLanguage.KOTLIN,RegexOperation.REPLACEMENT));
+        assertEquals("Pattern pattern = Pattern.compile(\"\\\\d+\");\nString replaced = pattern.matcher(\"123\").replaceAll(\"\");",model.getGeneratedCode());
+        DataModel.generateCode(model);
+        assertEquals("var pattern = Pattern.compile(\"\\\\d+\")\nvar replaced = pattern.matcher(\"123\").replaceAll(\"\")",model.getGeneratedCode());
     }
 
     @Test
@@ -83,6 +88,12 @@ public class DataModelTest {
         DataModel.setEscapedRegexText(model, "\\\\d+");
         assertEquals("\\d+", model.getRegexText());
         assertTrue(model.isMatches());
+        DataModel.generateCode(model);
+        assertEquals("Pattern pattern = Pattern.compile(\"\\\\d+\");\nboolean isValid = pattern.matcher(\"123\").matches();",model.getGeneratedCode());
+        model.setGeneratedCodeConfig(new GeneratedCodeConfig(JavaBasedLanguage.KOTLIN,RegexOperation.VALIDATION));
+        assertEquals("Pattern pattern = Pattern.compile(\"\\\\d+\");\nboolean isValid = pattern.matcher(\"123\").matches();",model.getGeneratedCode());
+        DataModel.generateCode(model);
+        assertEquals("var pattern = Pattern.compile(\"\\\\d+\")\nvar isValid = pattern.matcher(\"123\").matches()",model.getGeneratedCode());
     }
 
     /**
@@ -222,4 +233,5 @@ public class DataModelTest {
         DataModel.allGroups(model);
         assertEquals(Collections.emptyList(), model.getGroupsMatching());
     }
+
 }
