@@ -1,5 +1,6 @@
 package org.javapro.regextester;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -58,7 +59,11 @@ final class DataModel {
 
     @ComputedProperty(write = "setEscapedRegexText")
     static String escapedRegexText(String regexText) {
-        return regexText.replaceAll("[\\\\]", "\\\\\\\\").replaceAll("\"", "\\\\\"");
+        return regexText.replaceAll("[\\\\]", "\\\\\\\\").replaceAll("\"", "\\\\\""); //NOI18N
+    }
+    
+    private static String unEscapeText(String value){
+        return value.replaceAll("[\\\\]{2}", Matcher.quoteReplacement("\\")).replaceAll("\\\\\"", Matcher.quoteReplacement("\""));
     }
 
     @Function
@@ -97,7 +102,7 @@ final class DataModel {
             case REPLACEMENT:
                 return generateKotlinReplacementCode(regexText, testCase, replacementText);
             default:
-                return "";
+                return ""; //NOI18N
         }
     }
 
@@ -112,122 +117,49 @@ final class DataModel {
             case REPLACEMENT:
                 return generateJavaReplacementCode(regexText, testCase, replacementText);
             default:
-                return "";
+                return ""; //NOI18N
         }
     }
 
     private static String generateJavaSearchingCode(String regexText, String testCase) {
-        return new StringBuilder("List<String> allGroups = new ArrayList<>();\n")
-                .append("try {\n")
-                .append("   Matcher m = Pattern.compile(\"")
-                .append(escapedRegexText(regexText))
-                .append("\").matcher(\"")
-                .append(escapedRegexText(testCase))
-                .append("\");\n")
-                .append("   int groupsNum = m.groupCount();\n")
-                .append("   while (m.find()) {\n")
-                .append("       for (int i = 1; i <= groupsNum; i++) {\n")
-                .append("           try {\n")
-                .append("               String group = m.group(i);\n")
-                .append("               allGroups.add(group);\n")
-                .append("           } catch (IllegalStateException ise) {\n")
-                .append("               allGroups.add(\"No Matches\");\n")
-                .append("           }\n")
-                .append("       }\n")
-                .append("   }\n")
-                .append("} catch (PatternSyntaxException pse) {\n")
-                .append("   allGroups.add(pse.getMessage());\n")
-                .append("}")
-                .toString();
-
+        return MessageFormat.format(
+                java.util.ResourceBundle.getBundle("codegeneration").getString("JAVA_SEARCHING")
+                , escapedRegexText(regexText), escapedRegexText(testCase));
     }
 
     private static String generateKotlinSearchingCode(String regexText, String testCase) {
-        return new StringBuilder("val allGroups = ArrayList()\n")
-                .append("try {\n")
-                .append("    val m = Pattern.compile(\"")
-                .append(escapedRegexText(regexText))
-                .append("\").matcher(\"")
-                .append(escapedRegexText(testCase))
-                .append("\")\n")
-                .append("   val groupsNum = m.groupCount()\n")
-                .append("   while (m.find()) {\n")
-                .append("       for (i in 1..groupsNum) {\n")
-                .append("           try {\n")
-                .append("               val group = m.group(i)\n")
-                .append("               allGroups.add(group)\n")
-                .append("           } catch (ise:IllegalStateException) {\n")
-                .append("               allGroups.add(\"No Matches\")\n")
-                .append("           }\n")
-                .append("       }\n")
-                .append("   }\n")
-                .append("} catch (pse:PatternSyntaxException) {\n")
-                .append("   allGroups.add(pse.getMessage())\n")
-                .append("}")
-                .toString();
+        return MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString("KOTLIN_SEARCHING"), escapedRegexText(regexText), escapedRegexText(testCase));
     }
 
     private static String generateJavaSplittingCode(String regexText, String testCase) {
-        return new StringBuilder("Pattern pattern = Pattern.compile(\"")
-                .append(escapedRegexText(regexText))
-                .append("\");\nString[] splitted= pattern.split(\"")
-                .append(escapedRegexText(testCase))
-                .append("\",0);")
-                .toString();
+        return MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString("JAVA_SPLIT"), escapedRegexText(regexText), escapedRegexText(testCase));
     }
 
     private static String generateKotlinSplittingCode(String regexText, String testCase) {
-        return new StringBuilder("var pattern = Pattern.compile(\"")
-                .append(escapedRegexText(regexText))
-                .append("\")\nvar splitted= pattern.split(\"")
-                .append(escapedRegexText(testCase))
-                .append("\",0)")
-                .toString();
+        return MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString("KOTLIN_SPLIT"), escapedRegexText(regexText), escapedRegexText(testCase));
     }
 
     private static String generateJavaReplacementCode(String regexText, String testCase, String replacementText) {
-        return new StringBuilder("Pattern pattern = Pattern.compile(\"")
-                .append(escapedRegexText(regexText))
-                .append("\");\nString replaced = pattern.matcher(\"")
-                .append(escapedRegexText(testCase))
-                .append("\").replaceAll(")
-                .append(replacementText)
-                .append(");").toString();
+        return MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString("JAVA_REPLACE"), escapedRegexText(regexText), escapedRegexText(testCase), replacementText);
     }
 
     private static String generateKotlinReplacementCode(String regexText, String testCase, String replacementText) {
-        return new StringBuilder("var pattern = Pattern.compile(\"")
-                .append(escapedRegexText(regexText))
-                .append("\")\nvar replaced = pattern.matcher(\"")
-                .append(escapedRegexText(testCase))
-                .append("\").replaceAll(")
-                .append(replacementText)
-                .append(")").toString();
+        return MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString("KOTLIN_REPLACE"), escapedRegexText(regexText), escapedRegexText(testCase), replacementText);
     }
 
     private static String generateJavaValidationCode(String regexText, String testCase) {
-        StringBuilder sb
-                = new StringBuilder("Pattern pattern = Pattern.compile(\"")
-                        .append(escapedRegexText(regexText))
-                        .append("\");\nboolean isValid = pattern.matcher(\"")
-                        .append(escapedRegexText(testCase))
-                        .append("\").matches();");
-        return sb.toString();
+        String sb = MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString("JAVA_VALIDATION"), escapedRegexText(regexText), escapedRegexText(testCase));
+        return sb;
     }
 
     private static String generateKotlinValidationCode(String regexText, String testCase) {
-        StringBuilder sb
-                = new StringBuilder("var pattern = Pattern.compile(\"")
-                        .append(escapedRegexText(regexText))
-                        .append("\")\nvar isValid = pattern.matcher(\"")
-                        .append(escapedRegexText(testCase))
-                        .append("\").matches()");
-        return sb.toString();
+        String sb = MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString("KOTLIN_VALIDATION"), escapedRegexText(regexText), escapedRegexText(testCase));
+        return sb;
     }
-
-    static void setEscapedRegexText(RegexTesting model, String value) {
+    
+        static void setEscapedRegexText(RegexTesting model, String value) {
         try {
-            String excaped = value.replaceAll("[\\\\]{2}", Matcher.quoteReplacement("\\")).replaceAll("\\\\\"", Matcher.quoteReplacement("\""));
+            String excaped= unEscapeText(value);
             model.setRegexText(excaped);
         } catch (PatternSyntaxException | IndexOutOfBoundsException pse) {
             model.setRegexText(pse.getMessage());
