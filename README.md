@@ -8,7 +8,7 @@ It is currently configured to provide versions for:
 
 * HTML
 * Netbeans Plugin
-* IDEA Plugin
+* [IDEA Plugin](https://plugins.jetbrains.com/plugin/11370-dukescript-java-regex-tester)
 * JavaFX jar executable
 
 Build Status
