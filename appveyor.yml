@@ -19,7 +19,7 @@ before_build:
   - cd..
 
 build_script:
-  - mvnw -N io.takari:maven:0.7.6:wrapper -Dmaven=3.6.2
+  - mvn -N io.takari:maven:wrapper -Dmaven=3.6.2
   - mvn install -DskipTests -B -ntp
 
  # verify artifacts
