@@ -19,11 +19,11 @@ before_build:
   - cd..
 
 build_script:
-  - mvn install -DskipTests -B
+  - mvn install -DskipTests -B  -ntp
 
  # verify artifacts
 test_script:
-  - mvn verify -B
+  - mvn verify -B  -ntp
 
 cache:
   - C:\maven\
