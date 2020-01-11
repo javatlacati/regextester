@@ -1,6 +1,7 @@
-# environment:
-  # matrix:
-  # - JAVA_HOME: C:\Program Files\Java\jdk1.7.0 currently default in path
+# enviroment settings
+environment:
+  matrix:
+    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
 
 # install required tools (maven, secure-file, encrypted files)
 install:
@@ -18,11 +19,11 @@ before_build:
   - cd..
 
 build_script:
-  - mvn install -DskipTests -B
+  - mvn install -DskipTests -B -ntp
 
  # verify artifacts
 test_script:
-  - mvn verify -B
+  - mvn verify -B -ntp
 
 cache:
   - C:\maven\
