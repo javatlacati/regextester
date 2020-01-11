@@ -17,6 +17,7 @@
 package org.javapro.regextester;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,8 +26,8 @@ import java.util.List;
  */
 public enum JavaBasedLanguage {
     JAVA("JAVA")
-    , KOTLIN("KOTLIN");
-//     , GROOVY("GROOVY")
+    , KOTLIN("KOTLIN")
+     , GROOVY("GROOVY");
 //    , SCALA("SCALA")
 //    ,CLOJURE("CLOJURE")
 //    ,JAVA_JS("JAVA_JS") //that means Bison or Nashorn ot whatever Java implemented JS compatible versión
@@ -55,9 +56,7 @@ public enum JavaBasedLanguage {
     public static List<JavaBasedLanguage> supportedLanguages(){
         JavaBasedLanguage[] validValues = JavaBasedLanguage.values();
         List<JavaBasedLanguage> result = new ArrayList<>(validValues.length);
-        for (JavaBasedLanguage validValue : validValues) {
-            result.add(validValue);
-        }
+        Collections.addAll(result, validValues);
         return result;
     }
 }

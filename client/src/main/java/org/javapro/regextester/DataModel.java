@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+
 import net.java.html.json.ComputedProperty;
 import net.java.html.json.Function;
 import net.java.html.json.Model;
@@ -20,21 +21,21 @@ import org.javapro.regextester.js.PlatformServices;
  * Data model for holding application data.
  */
 @Model(targetId = "", className = "RegexTesting", instance = true, properties = {
-    @Property(name = "testCase", type = String.class)
-    , @Property(name = "regexText", type = String.class)
-    , @Property(name = "replacementText", type = String.class)
-    ,@Property(name = "generatedCodeConfig", type = GeneratedCodeConfig.class)
-    , @Property(name = "generatedCode", type = String.class)
-    , @Property(name = "partialMatches", type = String.class, array = true)
-    , @Property(name = "possibilities", type = String.class, array = true)
-    , @Property(name = "groupsMatching", type = String.class, array = true)
-    , @Property(name = "displayReplacement", type = boolean.class)
-    , @Property(name = "displayMatches", type = boolean.class)
-    , @Property(name = "displayGroups", type = boolean.class)
-    , @Property(name = "displayGeneration", type = boolean.class)
-    , @Property(name = "displaySampleCode", type = boolean.class)
-    , @Property(name = "languages", type = JavaBasedLanguage.class, array = true)
-    , @Property(name = "operations", type = RegexOperation.class, array = true)
+        @Property(name = "testCase", type = String.class)
+        , @Property(name = "regexText", type = String.class)
+        , @Property(name = "replacementText", type = String.class)
+        , @Property(name = "generatedCodeConfig", type = GeneratedCodeConfig.class)
+        , @Property(name = "generatedCode", type = String.class)
+        , @Property(name = "partialMatches", type = String.class, array = true)
+        , @Property(name = "possibilities", type = String.class, array = true)
+        , @Property(name = "groupsMatching", type = String.class, array = true)
+        , @Property(name = "displayReplacement", type = boolean.class)
+        , @Property(name = "displayMatches", type = boolean.class)
+        , @Property(name = "displayGroups", type = boolean.class)
+        , @Property(name = "displayGeneration", type = boolean.class)
+        , @Property(name = "displaySampleCode", type = boolean.class)
+        , @Property(name = "languages", type = JavaBasedLanguage.class, array = true)
+        , @Property(name = "operations", type = RegexOperation.class, array = true)
 })
 final class DataModel {
 
@@ -61,112 +62,75 @@ final class DataModel {
     static String escapedRegexText(String regexText) {
         return regexText.replaceAll("[\\\\]", "\\\\\\\\").replaceAll("\"", "\\\\\""); //NOI18N
     }
-    
-    private static String unEscapeText(String value){
+
+    private static String unEscapeText(String value) {
         return value.replaceAll("[\\\\]{2}", Matcher.quoteReplacement("\\")).replaceAll("\\\\\"", Matcher.quoteReplacement("\""));
     }
 
     @Function
     static void generateCode(RegexTesting model) {
+        RegexOperation selectedOperation = model.getGeneratedCodeConfig().getSelectedOperation();
+        String regexText = model.getRegexText();
+        String testCase = model.getTestCase();
+        String replacementText = model.getReplacementText();
         switch (model.getGeneratedCodeConfig().getSelectedLanguage()) {
-            case JAVA:
-                model.setGeneratedCode(generateJavaCode(model.getGeneratedCodeConfig().getSelectedOperation(), model.getRegexText(), model.getTestCase(), model.getReplacementText()));
+            case JAVA: {
+                generateCodeForPlatform(model, selectedOperation, regexText, testCase, replacementText, "JAVA_VALIDATION", "JAVA_SEARCHING", "JAVA_SPLIT", "JAVA_REPLACE");
                 break;
-            case KOTLIN:
-                model.setGeneratedCode(generateKotlinCode(model.getGeneratedCodeConfig().getSelectedOperation(), model.getRegexText(), model.getTestCase(), model.getReplacementText()));
+            }
+            case KOTLIN: {
+                generateCodeForPlatform(model, selectedOperation, regexText, testCase, replacementText, "KOTLIN_VALIDATION", "KOTLIN_SEARCHING", "KOTLIN_SPLIT", "KOTLIN_REPLACE");
                 break;
+            }
+            case GROOVY: {
+                generateCodeForPlatform(model, selectedOperation, regexText, testCase, replacementText, "GROOVY_VALIDATION", "GROOVY_SEARCHING", "GROOVY_SPLIT", "GROOVY_REPLACE");
+                break;
+            }
             default:
                 break;
         }
     }
 
-//    @ComputedProperty
-//    static String generateCode(GeneratedCodeConfig generatedCodeConfig, String regexText, String testCase,String replacementText) {
-//        switch (generatedCodeConfig.getSelectedLanguage()) {
-//            case JAVA:
-//                return generateJavaCode(generatedCodeConfig.getSelectedOperation(), regexText, testCase,replacementText);
-//            case KOTLIN:
-//                return generateKotlinCode(generatedCodeConfig.getSelectedOperation(), regexText, testCase,replacementText);
-//            default:
-//                return "";
-//        }
-//    }
-    private static String generateKotlinCode(RegexOperation selectedOperation, String regexText, String testCase, String replacementText) {
+    private static void generateCodeForPlatform(RegexTesting model, RegexOperation selectedOperation, String regexText, String testCase, String replacementText, String validationKey, String searchingKey, String splitKey, String replaceKey) {
+        String generatedCode;
         switch (selectedOperation) {
-            case VALIDATION:
-                return generateKotlinValidationCode(regexText, testCase);
-            case SEARCHING:
-                return generateKotlinSearchingCode(regexText, testCase);
-            case SPLITTING:
-                return generateKotlinSplittingCode(regexText, testCase);
-            case REPLACEMENT:
-                return generateKotlinReplacementCode(regexText, testCase, replacementText);
-            default:
-                return ""; //NOI18N
+            case VALIDATION: {
+                generatedCode = MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString(validationKey), escapedRegexText(regexText), escapedRegexText(testCase));
+                break;
+            }
+            case SEARCHING: {
+                generatedCode = MessageFormat.format(
+                        java.util.ResourceBundle.getBundle("codegeneration").getString(searchingKey)
+                        , escapedRegexText(regexText), escapedRegexText(testCase));
+                break;
+            }
+            case SPLITTING: {
+                generatedCode = MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString(splitKey), escapedRegexText(regexText), escapedRegexText(testCase));
+                break;
+            }
+            case REPLACEMENT: {
+                generatedCode = MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString(replaceKey), escapedRegexText(regexText), escapedRegexText(testCase), replacementText);
+                break;
+            }
+            default: {
+                generatedCode = ""; //NOI18N
+                break;
+            }
         }
+
+        model.setGeneratedCode(generatedCode);
     }
 
-    private static String generateJavaCode(RegexOperation selectedOperation, String regexText, String testCase, String replacementText) {
-        switch (selectedOperation) {
-            case VALIDATION:
-                return generateJavaValidationCode(regexText, testCase);
-            case SEARCHING:
-                return generateJavaSearchingCode(regexText, testCase);
-            case SPLITTING:
-                return generateJavaSplittingCode(regexText, testCase);
-            case REPLACEMENT:
-                return generateJavaReplacementCode(regexText, testCase, replacementText);
-            default:
-                return ""; //NOI18N
-        }
-    }
-
-    private static String generateJavaSearchingCode(String regexText, String testCase) {
-        return MessageFormat.format(
-                java.util.ResourceBundle.getBundle("codegeneration").getString("JAVA_SEARCHING")
-                , escapedRegexText(regexText), escapedRegexText(testCase));
-    }
-
-    private static String generateKotlinSearchingCode(String regexText, String testCase) {
-        return MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString("KOTLIN_SEARCHING"), escapedRegexText(regexText), escapedRegexText(testCase));
-    }
-
-    private static String generateJavaSplittingCode(String regexText, String testCase) {
-        return MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString("JAVA_SPLIT"), escapedRegexText(regexText), escapedRegexText(testCase));
-    }
-
-    private static String generateKotlinSplittingCode(String regexText, String testCase) {
-        return MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString("KOTLIN_SPLIT"), escapedRegexText(regexText), escapedRegexText(testCase));
-    }
-
-    private static String generateJavaReplacementCode(String regexText, String testCase, String replacementText) {
-        return MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString("JAVA_REPLACE"), escapedRegexText(regexText), escapedRegexText(testCase), replacementText);
-    }
-
-    private static String generateKotlinReplacementCode(String regexText, String testCase, String replacementText) {
-        return MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString("KOTLIN_REPLACE"), escapedRegexText(regexText), escapedRegexText(testCase), replacementText);
-    }
-
-    private static String generateJavaValidationCode(String regexText, String testCase) {
-        String sb = MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString("JAVA_VALIDATION"), escapedRegexText(regexText), escapedRegexText(testCase));
-        return sb;
-    }
-
-    private static String generateKotlinValidationCode(String regexText, String testCase) {
-        String sb = MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString("KOTLIN_VALIDATION"), escapedRegexText(regexText), escapedRegexText(testCase));
-        return sb;
-    }
-    
-        static void setEscapedRegexText(RegexTesting model, String value) {
+    static void setEscapedRegexText(RegexTesting model, String value) {
         try {
-            String excaped= unEscapeText(value);
+            String excaped = unEscapeText(value);
             model.setRegexText(excaped);
         } catch (PatternSyntaxException | IndexOutOfBoundsException pse) {
             model.setRegexText(pse.getMessage());
         }
     }
 
-//    @ComputedProperty
+    //    @ComputedProperty
 //    static String generateExample(String regexText) {
 //        Generex generex = new Generex(regexText);
 //        return generex.random();
