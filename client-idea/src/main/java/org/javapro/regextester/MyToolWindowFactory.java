@@ -16,7 +16,7 @@ import javafx.scene.web.WebView;
 import net.java.html.boot.fx.FXBrowsers;
 import org.javapro.regextester.js.PlatformServices;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
