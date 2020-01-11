@@ -4,6 +4,10 @@ cache:
   directories:
   - $HOME/.m2
   - ./client-idea/lib
+
+services:
+  - xvfb
+
 addons:
   chrome: stable
 before_install:
@@ -21,10 +25,10 @@ before_install:
   - jar xf ideaIC-$VERSION.zip
   - cd ..
   - cd ..
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start || echo No X11
-  - sleep 3
+#before_script:
+#  - export DISPLAY=:99.0
+#  - sh -e /etc/init.d/xvfb start || echo No X11
+#  - sleep 3
 install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B
 script:
