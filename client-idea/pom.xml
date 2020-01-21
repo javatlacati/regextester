@@ -186,16 +186,9 @@
                 <executions>
                     <execution>
                         <id>jar</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
                         <phase>prepare-package</phase>
                     </execution>
                 </executions>
-                <configuration>
-                    <!-- to have the jar plugin pickup the nbm generated manifest -->
-                    <useDefaultManifestFile>true</useDefaultManifestFile>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
