@@ -20,12 +20,13 @@ before_install:
   - mkdir -p lib
   - cd lib
   - echo $TEST_VAR
-  - echo wget –q https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/$VERSION/ideaIC-$VERSION.zip
-  - test -f "ideaIC-$VERSION.zip" || wget https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/$VERSION/ideaIC-$VERSION.zip
-  - jar xf ideaIC-$VERSION.zip
+#  - echo wget –q https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/$VERSION/ideaIC-$VERSION.zip
+#  - test -f "ideaIC-$VERSION.zip" || wget https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/$VERSION/ideaIC-$VERSION.zip
+#  - jar xf ideaIC-$VERSION.zip
   - cd ..
   - cd ..
 #before_script:
+#  - mvn process-resources
 #  - export DISPLAY=:99.0
 #  - sh -e /etc/init.d/xvfb start || echo No X11
 #  - sleep 3
