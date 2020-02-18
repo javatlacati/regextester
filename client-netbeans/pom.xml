@@ -1127,7 +1127,7 @@ Public License instead of this License.  But first, please read
         <dependency>
             <groupId>org.javapro</groupId>
             <artifactId>generex</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
