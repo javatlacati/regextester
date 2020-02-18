@@ -10,13 +10,13 @@
     
     <name>regextester</name>
     <modules>
-        <module>client</module>
-        <module>client-netbeans</module>
         <module>js</module>
-        <module>client-idea</module>
         <module>automatonosgi</module>
         <module>generex</module>
+        <module>client</module>
         <module>client-web</module>
+        <module>client-netbeans</module>
+        <module>client-idea</module>
     </modules>
     <properties>
         <net.java.html.version>1.7</net.java.html.version>
