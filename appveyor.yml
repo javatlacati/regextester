@@ -20,7 +20,7 @@ before_build:
 
 build_script:
   - mvn -N io.takari:maven:wrapper -Dmaven=3.6.2
-  - mvnw install -DskipTests -B -ntp
+  - mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
 
  # verify artifacts
 test_script:
