@@ -16,13 +16,15 @@ before_build:
 #  - If Not Exist ideaIC-%VERSION%.zip appveyor DownloadFile https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/%VERSION%/ideaIC-%VERSION%.zip
 #  - jar xf ideaIC-%VERSION%.zip
 #  - cd ..
-#  - cd..
+  - cd..
 
 build_script:
-  - mvn -N io.takari:maven:wrapper -Dmaven=3.6.2
+  - mvn -N io.takari:maven:wrapper -Dmaven=3.6.2 -B -ntp
   - mvnw validate -DskipTests -B
+  - cd client-idea
   - cd lib
   - dir
+  - cd ..
   - cd ..
   - mvnw install -DskipTests -B -ntp
 
@@ -31,6 +33,5 @@ test_script:
   - mvnw verify -B -ntp
 
 cache:
-  - C:\maven\
   - C:\Users\appveyor\.m2
 #  - client-idea\lib
