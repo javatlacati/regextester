@@ -302,7 +302,7 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
                     <execution>
-                        <phase>process-resources</phase>
+                        <phase>validate</phase>
                         <configuration>
                             <tasks>
                                 <!-- Using an ant task to deflate webinstaller.zip -->
