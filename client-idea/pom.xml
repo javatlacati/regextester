@@ -263,58 +263,63 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <artifactId>download-maven-plugin</artifactId>
+                <version>1.5.0</version>
+                <executions>
+                    <execution>
+                        <id>install-idea-dependencies</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>wget</goal>
+                        </goals>
+                        <configuration>
+                            <url>https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/${env.VERSION}/ideaIC-${env.VERSION}.zip</url>
+                            <unpack>true</unpack>
+                            <outputDirectory>${project.basedir}/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
 <!--            <plugin>-->
-<!--                <groupId>com.googlecode.maven-download-plugin</groupId>-->
-<!--                <artifactId>download-maven-plugin</artifactId>-->
-<!--                <version>1.5.0</version>-->
+<!--                <groupId>org.codehaus.mojo</groupId>-->
+<!--                <artifactId>wagon-maven-plugin</artifactId>-->
+<!--                <version>2.0.0</version>-->
 <!--                <executions>-->
 <!--                    <execution>-->
-<!--                        <id>install-jbpm</id>-->
-<!--                        <phase>process-resources</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>wget</goal>-->
-<!--                        </goals>-->
+<!--                        <id>downloadIC</id>-->
+<!--                        <phase>validate</phase>-->
+<!--                        <goals><goal>download-single</goal></goals>-->
 <!--                        <configuration>-->
-<!--                            <url>https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/${env.VERSION}/ideaIC-${env.VERSION}.zip</url>-->
-<!--                            <unpack>true</unpack>-->
-<!--                            <outputDirectory>${project.basedir}/lib</outputDirectory>-->
+<!--                            <url>https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/${env.VERSION}/</url>-->
+<!--                            <fromFile>ideaIC-${env.VERSION}.zip</fromFile>-->
+<!--                            <toFile>${project.basedir}/lib/ideaIC-${env.VERSION}.zip</toFile>-->
 <!--                        </configuration>-->
 <!--                    </execution>-->
 <!--                </executions>-->
 <!--            </plugin>-->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>wagon-maven-plugin</artifactId>
-                <version>2.0.0</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals><goal>download-single</goal></goals>
-                        <configuration>
-                            <url>https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/${env.VERSION}/</url>
-                            <fromFile>ideaIC-${env.VERSION}.zip</fromFile>
-                            <toFile>${project.basedir}/lib/ideaIC-${env.VERSION}.zip</toFile>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>initialize</phase>
-                        <configuration>
-                            <tasks>
-                                <!-- Using an ant task to deflate webinstaller.zip -->
-                                <unzip src="${project.basedir}/lib/ideaIC-${env.VERSION}.zip" dest="${project.basedir}/lib"/>
-                            </tasks>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
+<!--            <plugin>-->
+<!--                <artifactId>maven-antrun-plugin</artifactId>-->
+<!--                <version>1.8</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>prepare</id>-->
+<!--                        <phase>validate</phase>-->
+<!--                        <configuration>-->
+<!--                            <tasks>-->
+<!--                                <echo message="unzipping file ${project.basedir}/lib/ideaIC-${env.VERSION}.zip to ${project.basedir}/lib" />-->
+<!--                                <unzip src="${project.basedir}/lib/ideaIC-${env.VERSION}.zip" dest="${project.basedir}/lib"/>-->
+<!--                            </tasks>-->
+<!--                        </configuration>-->
+<!--                        <goals>-->
+<!--                            <goal>run</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project>
