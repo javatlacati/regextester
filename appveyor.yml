@@ -5,8 +5,9 @@ environment:
 
 # install required tools (maven, secure-file, encrypted files)
 install:
-  - cmd: echo %JAVA_HOME%
-  - cmd: echo %M2_HOME%
+  - mvn -N io.takari:maven:wrapper -Dmaven=3.6.2 -B
+#  - cmd: echo %JAVA_HOME%
+#  - cmd: echo %M2_HOME%
 
 before_build:
   - cd client-idea
@@ -19,7 +20,6 @@ before_build:
   - cd..
 
 build_script:
-  - mvn -N io.takari:maven:wrapper -Dmaven=3.6.2 -B
   - mvnw validate -DskipTests -B
   - cd client-idea
   - cd lib
