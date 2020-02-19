@@ -19,7 +19,7 @@ before_build:
   - cd..
 
 build_script:
-  - mvn -N io.takari:maven:wrapper -Dmaven=3.6.2 -B -ntp
+  - mvn -N io.takari:maven:wrapper -Dmaven=3.6.2 -B
   - mvnw validate -DskipTests -B
   - cd client-idea
   - cd lib
