@@ -20,6 +20,7 @@ before_build:
 
 build_script:
   - mvn -N io.takari:maven:wrapper -Dmaven=3.6.2
+  - mvnw validate -DskipTests -B
   - mvnw install -DskipTests -B -ntp
 
  # verify artifacts
@@ -29,4 +30,4 @@ test_script:
 cache:
   - C:\maven\
   - C:\Users\appveyor\.m2
-  - client-idea\lib
+#  - client-idea\lib
