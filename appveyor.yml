@@ -20,7 +20,7 @@ install:
 #  - cd..
 
 build_script:
-  - mvnw validate -DskipTests -B -ntp
+#  - mvnw validate -DskipTests -B -ntp
 #  - cd client-idea
 #  - cd lib
 #  - dir
