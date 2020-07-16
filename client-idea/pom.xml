@@ -135,7 +135,7 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-swing</artifactId>
-            <version>14</version>
+            <version>14.0.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
