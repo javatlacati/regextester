@@ -7,7 +7,7 @@
     <artifactId>regextester-pom</artifactId>
     <version>1.0.3</version>
     <packaging>pom</packaging>
-    
+
     <name>regextester</name>
     <modules>
         <module>js</module>
@@ -90,7 +90,7 @@
                             <fail>${enforcer.fail}</fail>
                         </configuration>
                     </execution>
-                </executions>              
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -118,6 +118,16 @@
                     <repoToken>${env.repoToken}</repoToken>
                     <sourceEncoding>UTF-8</sourceEncoding>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>3.0.0</version>
             </plugin>
         </plugins>
     </build>
