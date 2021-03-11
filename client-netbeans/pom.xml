@@ -814,7 +814,7 @@ Public License instead of this License.  But first, please read
         <repository>
             <id>netbeans</id>
             <name>NetBeans</name>
-            <url>http://bits.netbeans.org/maven2/</url>
+            <url>http://netbeans.apidesign.org/maven2/</url>
         </repository>
         <repository>
             <id>dev</id>
@@ -994,7 +994,7 @@ Public License instead of this License.  But first, please read
         </plugins>
     </build>
     <dependencies>
- 
+
         <dependency>
             <groupId>org.javapro</groupId>
             <artifactId>regextester</artifactId>
