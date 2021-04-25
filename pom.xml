@@ -129,6 +129,43 @@
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <version>3.0.0</version>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>wagon-maven-plugin</artifactId>
+                <version>2.0.0</version>
+                <executions>
+                    <execution>
+                        <id>downloadIC</id>
+                        <phase>validate</phase>
+                        <goals><goal>download-single</goal></goals>
+                        <configuration>
+                            <url>https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/${env.VERSION}/</url>
+                            <fromFile>ideaIC-${env.VERSION}.zip</fromFile>
+                            <toFile>${project.basedir}/client-idea/lib/ideaIC-${env.VERSION}.zip</toFile>
+                            <skipIfExists>true</skipIfExists>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>prepare</id>
+                        <phase>validate</phase>
+                        <configuration>
+                            <tasks>
+                                <echo message="unzipping file ${project.basedir}/client-idea/lib/ideaIC-${env.VERSION}.zip to ${project.basedir}/client-idea/lib" />
+                                <unzip src="${project.basedir}/client-idea/lib/ideaIC-${env.VERSION}.zip" dest="${project.basedir}/client-idea/lib"/>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <!--
