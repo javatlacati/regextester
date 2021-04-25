@@ -164,7 +164,7 @@
                         <configuration>
                             <tasks>
                                 <echo message="unzipping file ${project.basedir}/client-idea/lib/ideaIC-${env.VERSION}.zip to ${project.basedir}/client-idea/lib" />
-                                <unzip src="${project.basedir}/client-idea/lib/ideaIC-${env.VERSION}.zip" dest="${project.basedir}/client-idea/lib"/>
+                                <unzip src="${project.basedir}/client-idea/lib/ideaIC-${env.VERSION}.zip" dest="${project.basedir}/client-idea/lib" overwrite="false" />
                             </tasks>
                         </configuration>
                         <goals>
