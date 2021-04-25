@@ -30,6 +30,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
+        <idea.version>2020.1.4</idea.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -146,9 +147,9 @@
                         <phase>validate</phase>
                         <goals><goal>download-single</goal></goals>
                         <configuration>
-                            <url>https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/${env.VERSION}/</url>
-                            <fromFile>ideaIC-${env.VERSION}.zip</fromFile>
-                            <toFile>${project.basedir}/client-idea/lib/ideaIC-${env.VERSION}.zip</toFile>
+                            <url>https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/${idea.version}/</url>
+                            <fromFile>ideaIC-${idea.version}.zip</fromFile>
+                            <toFile>${project.basedir}/client-idea/lib/ideaIC-${idea.version}.zip</toFile>
                             <skipIfExists>true</skipIfExists>
                         </configuration>
                     </execution>
@@ -163,8 +164,8 @@
                         <phase>validate</phase>
                         <configuration>
                             <tasks>
-                                <echo message="unzipping file ${project.basedir}/client-idea/lib/ideaIC-${env.VERSION}.zip to ${project.basedir}/client-idea/lib" />
-                                <unzip src="${project.basedir}/client-idea/lib/ideaIC-${env.VERSION}.zip" dest="${project.basedir}/client-idea/lib" overwrite="false" />
+                                <echo message="unzipping file ${project.basedir}/client-idea/lib/ideaIC-${idea.version}.zip to ${project.basedir}/client-idea/lib" />
+                                <unzip src="${project.basedir}/client-idea/lib/ideaIC-${idea.version}.zip" dest="${project.basedir}/client-idea/lib" overwrite="false" />
                             </tasks>
                         </configuration>
                         <goals>
