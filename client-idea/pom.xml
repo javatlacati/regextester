@@ -32,8 +32,6 @@
         <springloaded.javaagent>-Djavaagent=false</springloaded.javaagent>
         <dependency.plugin.version>2.3</dependency.plugin.version>
         <comipler.plugin.version>2.5.1</comipler.plugin.version>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
         <exec.debug.arg>-Ddebug=false</exec.debug.arg>
     </properties>
 
@@ -194,8 +192,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>8</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
             <plugin>
