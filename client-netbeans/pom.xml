@@ -814,12 +814,12 @@ Public License instead of this License.  But first, please read
         <repository>
             <id>netbeans</id>
             <name>NetBeans</name>
-            <url>http://netbeans.apidesign.org/maven2/</url>
+            <url>https://netbeans.apidesign.org/maven2/</url>
         </repository>
         <repository>
             <id>dev</id>
             <name>NetBeans</name>
-            <url>http://bits.netbeans.org/nexus/content/repositories/snapshots/</url>
+            <url>https://bits.netbeans.org/nexus/content/repositories/snapshots/</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
