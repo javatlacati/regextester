@@ -202,6 +202,10 @@
                     </goals>
                   </execution>
                 </executions>
+                <configuration>
+                    <source>8</source>
+                    <!-- <detectJavaApiLink>false</detectJavaApiLink> -->
+                </configuration>
             </plugin>
         
             <!-- plugins for releasing to maven central -->
