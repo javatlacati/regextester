@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.javapro</groupId>
         <artifactId>regextester-pom</artifactId>
-        <version>1.0.3</version>
+        <version>1.0.3-SNAPSHOT</version>
     </parent>
 
     <artifactId>regextester</artifactId>
@@ -282,13 +282,13 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>16</version>
+            <version>${openjfx.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-swing</artifactId>
-            <version>16</version>
+            <version>${openjfx.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
