@@ -85,14 +85,14 @@
             <artifactId>regextester-js</artifactId>
             <version>${project.version}</version>
         </dependency>
-        
+
         <!--idea dependencies
         <dependency>
             <groupId>com.jetbrains.intellij.platform</groupId>
             <artifactId>util</artifactId>
             <version>212.629</version>
         </dependency>
-        
+
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
@@ -106,21 +106,14 @@
             <systemPath>${idea.systemPath}/lib/openapi.jar</systemPath>
         </dependency>
         -->
-        
-        
+
+
         <dependency>
             <groupId>com.jetbrains</groupId>
             <artifactId>util</artifactId>
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${idea.systemPath}/lib/util.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.jetbrains</groupId>
-            <artifactId>platform-core-ui</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${idea.systemPath}/lib/platform-core-ui.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.jetbrains</groupId>
@@ -136,7 +129,7 @@
             <scope>system</scope>
             <systemPath>${idea.systemPath}/lib/annotations.jar</systemPath>
         </dependency>
-        
+
 
         <!--javafx-->
         <dependency>
@@ -324,7 +317,7 @@
                 </executions>
             </plugin>
 
-            
+
         </plugins>
     </build>
     <repositories>
