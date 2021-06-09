@@ -1,11 +1,12 @@
 package org.javapro.regextester;
 
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.wm.ToolWindow;
-import com.intellij.openapi.wm.ToolWindowFactory;
-import com.intellij.ui.content.Content;
-import com.intellij.ui.content.ContentFactory;
-import com.intellij.ui.content.ContentManager;
+import com.intellij.openapi.diagnostic.Logger;//util
+import com.intellij.openapi.project.Project;//platform // core
+import com.intellij.openapi.wm.ToolWindow;//platform
+import com.intellij.openapi.wm.ToolWindowFactory; // ide
+import com.intellij.ui.content.Content; // ide
+import com.intellij.ui.content.ContentFactory; // ide
+import com.intellij.ui.content.ContentManager; // ide
 import com.mifmif.common.regex.Generex;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
@@ -27,7 +28,8 @@ import java.util.Set;
  * Created by Javatlacati on 24/11/2018.
  */
 public class MyToolWindowFactory implements ToolWindowFactory {
-    ToolWindow myToolWindow;
+    private ToolWindow myToolWindow;
+    Logger logger = Logger.getInstance(MyToolWindowFactory.class);
 
     @Override
     public void createToolWindowContent(Project project, ToolWindow toolWindow) {
@@ -47,10 +49,10 @@ public class MyToolWindowFactory implements ToolWindowFactory {
             if (contentManager != null) {
                 contentManager.addContent(content);
             } else {
-                System.err.println("missing content Manager");
+                logger.error("missing content Manager");
             }
         } else {
-            System.err.println("missing tool window");
+            logger.error("missing tool window");
         }
     }
 
@@ -76,7 +78,7 @@ public class MyToolWindowFactory implements ToolWindowFactory {
                         try {
                             DataModel.onPageLoad(new DesktopServices());
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            logger.error(e);
                         }
                     }
                 });
@@ -98,7 +100,7 @@ public class MyToolWindowFactory implements ToolWindowFactory {
 
         @Override
         public Set<String> nPossibilities(String regexText) {
-            Set<String> allPossibilities = new HashSet<>();
+            Set<String> allPossibilities = new HashSet<>(5);
             try {
                 Generex generex = new Generex(regexText);
                 for (int i = 0; i < 5; i++) {

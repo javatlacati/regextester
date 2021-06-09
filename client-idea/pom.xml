@@ -84,52 +84,130 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>regextester-js</artifactId>
             <version>${project.version}</version>
+            <scope>compile</scope>
         </dependency>
 
-        <!--idea dependencies
         <dependency>
             <groupId>com.jetbrains.intellij.platform</groupId>
             <artifactId>util</artifactId>
             <version>212.629</version>
+            <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>20.1.0</version>
-        </dependency>
-        <dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.jetbrains.intellij.rd</groupId>-->
+<!--            <artifactId>rd-platform</artifactId>-->
+<!--            <version>211.7142.45</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.jetbrains.intellij.rd</groupId>-->
+<!--            <artifactId>rd-ide-model-generated</artifactId>-->
+<!--            <version>211.7142.45</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.jetbrains.rd</groupId>-->
+<!--            <artifactId>rd-core</artifactId>-->
+<!--            <version>0.211.234</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.roaringbitmap</groupId>-->
+<!--            <artifactId>RoaringBitmap</artifactId>-->
+<!--            <version>0.9.10</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.jetbrains</groupId>-->
+<!--            <artifactId>annotations</artifactId>-->
+<!--            <version>20.1.0</version>-->
+<!--        </dependency>-->
+
+
+        <!--idea dependencies
+                <dependency>
+                    <groupId>com.jetbrains.intellij.platform</groupId>
+                    <artifactId>util</artifactId>
+                    <version>212.629</version>
+                </dependency>
+                 <dependency>
             <groupId>com.jetbrains</groupId>
             <artifactId>openapi</artifactId>
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${idea.systemPath}/lib/openapi.jar</systemPath>
         </dependency>
-        -->
-
+   -->
 
         <dependency>
-            <groupId>com.jetbrains</groupId>
-            <artifactId>util</artifactId>
-            <version>1.0</version>
+            <groupId>com.jetbrains.rd</groupId>
+            <artifactId>rd-swing</artifactId>
+            <version>0.211.234</version>
             <scope>system</scope>
-            <systemPath>${idea.systemPath}/lib/util.jar</systemPath>
+            <systemPath>${idea.systemPath}/lib/rd-swing-0.211.234.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>com.jetbrains</groupId>
-            <artifactId>platform</artifactId>
-            <version>1.0</version>
+            <groupId>com.jetbrains.rd</groupId>
+            <artifactId>rd-framework</artifactId>
+            <version>0.211.234</version>
             <scope>system</scope>
-            <systemPath>${idea.systemPath}/lib/platform-api.jar</systemPath>
+            <systemPath>${idea.systemPath}/lib/rd-framework-0.211.234.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>com.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>1.0</version>
+            <groupId>com.jetbrains.rd</groupId>
+            <artifactId>rd-core</artifactId>
+            <version>0.211.234</version>
             <scope>system</scope>
-            <systemPath>${idea.systemPath}/lib/annotations.jar</systemPath>
+            <systemPath>${idea.systemPath}/lib/rd-core-0.211.234.jar</systemPath>
         </dependency>
 
+        <dependency>
+            <groupId>org.roaringbitmap</groupId>
+            <artifactId>RoaringBitmap</artifactId>
+            <version>0.9.8</version>
+            <scope>system</scope>
+            <systemPath>${idea.systemPath}/lib/roaringbitmap.jar</systemPath>
+        </dependency>
+
+
+<!--        <dependency>-->
+<!--            <groupId>com.jetbrains</groupId>-->
+<!--            <artifactId>util</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>${idea.systemPath}/lib/util.jar</systemPath>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.jetbrains</groupId>-->
+<!--            <artifactId>platform</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>${idea.systemPath}/lib/platform-api.jar</systemPath>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.jetbrains</groupId>-->
+<!--            <artifactId>annotations</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>${idea.systemPath}/lib/annotations.jar</systemPath>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>com.jetbrains.intellij.platform</groupId>
+            <artifactId>core</artifactId>
+            <version>211.7142.45</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jetbrains.intellij.platform</groupId>
+            <artifactId>core-ui</artifactId>
+            <version>211.7142.45</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jetbrains.intellij.platform</groupId>
+            <artifactId>ide</artifactId>
+            <version>211.7142.45</version>
+            <scope>provided</scope>
+        </dependency>
 
         <!--javafx-->
         <dependency>
