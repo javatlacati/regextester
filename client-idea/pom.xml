@@ -162,7 +162,7 @@
         <dependency>
             <groupId>org.roaringbitmap</groupId>
             <artifactId>RoaringBitmap</artifactId>
-            <version>0.9.8</version>
+            <version>0.9.10</version>
             <scope>system</scope>
             <systemPath>${idea.systemPath}/lib/roaringbitmap.jar</systemPath>
         </dependency>
