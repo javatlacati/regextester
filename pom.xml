@@ -31,7 +31,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
-        <idea.version>2020.1.4</idea.version>
+        <idea.version>2021.1.2</idea.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -207,7 +207,7 @@
                     <!-- <detectJavaApiLink>false</detectJavaApiLink> -->
                 </configuration>
             </plugin>
-        
+
             <!-- plugins for releasing to maven central -->
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
@@ -245,9 +245,9 @@
                     <goals>deploy</goals>
                 </configuration>
             </plugin>
-        </plugins> 
+        </plugins>
     </build>
-    
+
     <developers>
         <developer>
             <name>Ruslan Lopez Carro</name>
@@ -261,7 +261,7 @@
             </roles>
         </developer>
     </developers>
-    
+
     <issueManagement>
         <url>https://github.com/javatlacati/regextester/issues</url>
         <system>GitHub Issues</system>
@@ -277,14 +277,14 @@
         </license>
 
     </licenses>
-    
+
      <scm>
         <url>https://github.com/javatlacati/regextester</url>
         <connection>scm:git:git://github.com/javatlacati/regextester.git</connection>
         <developerConnection>scm:git:git@github.com:javatlacati/regextester.git</developerConnection>
         <tag>regextester-1.0.3-SNAPSHOT</tag>
     </scm>
-    
+
     <profiles>
         <profile>
             <id>releases</id>
@@ -314,7 +314,7 @@
             </build>
         </profile>
     </profiles>
-    
+
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
