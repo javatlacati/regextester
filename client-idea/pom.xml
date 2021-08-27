@@ -199,7 +199,7 @@
         <dependency>
             <groupId>com.jetbrains.intellij.platform</groupId>
             <artifactId>core-ui</artifactId>
-            <version>212.4746.96</version>
+            <version>212.5080.64</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
