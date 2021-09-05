@@ -17,7 +17,7 @@ Build Status
 
 Windows build: [![Windows Build status](https://ci.appveyor.com/api/projects/status/q7eu0xie4yidw5am?svg=true)](https://ci.appveyor.com/project/javatlacati/regextester)
 
-Linux Build: [![Linux Build Status](https://travis-ci.org/javatlacati/regextester.svg?branch=master)](https://travis-ci.org/javatlacati/regextester)
+Linux Build: [![Linux Build Status](https://app.travis-ci.com/javatlacati/regextester.svg?branch=master)](https://app.travis-ci.com/github/javatlacati/regextester)
 
 Code Coverage [![Coverage Status](https://coveralls.io/repos/github/javatlacati/regextester/badge.svg?branch=master)](https://coveralls.io/github/javatlacati/regextester?branch=master)
 
