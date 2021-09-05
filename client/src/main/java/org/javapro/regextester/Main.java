@@ -29,20 +29,21 @@ public final class Main {
     public static void onPageLoad(PlatformServices services) throws Exception {
         DataModel.onPageLoad(services);
     }
- 
+
 
     public static void onPageLoad() throws Exception {
         // don't put "common" initialization stuff here, other platforms (iOS, Android, Bck2Brwsr) may not call this method. They rather call DataModel.onPageLoad
         DataModel.onPageLoad(new DesktopServices());
     }
-    
+
     private static final class DesktopServices extends PlatformServices {
+
+    private static final int POSSIBILITIES_TO_SHOW = 5;
 
     @Override
     public void openWebBrowser(String url) {
         try {
             Desktop.getDesktop().browse(new URL(url).toURI());
-//                new ProcessBuilder("x-www-browser", url).start();
         } catch (IOException | URISyntaxException e) {
             //e.printStackTrace();
         }
@@ -50,10 +51,10 @@ public final class Main {
 
     @Override
     public Set<String> nPossibilities(String regexText) {
-        Set<String> allPossibilities = new HashSet<>();
+        Set<String> allPossibilities = new HashSet<>(POSSIBILITIES_TO_SHOW);
         try {
             Generex generex = new Generex(regexText);
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < POSSIBILITIES_TO_SHOW; i++) {
                 allPossibilities.add(generex.random());
             }
         } catch (IllegalArgumentException iae) {

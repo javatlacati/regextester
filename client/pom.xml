@@ -274,6 +274,18 @@
             <type>jar</type>
         </dependency>
         < ! - - End of Bck2Brwsr VM presenter for BrowserRunner -->
+<!--        <dependency>-->
+<!--            <groupId>org.javapro</groupId>-->
+<!--            <artifactId>automatonosgi</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>dk.brics.automaton</groupId>
+            <artifactId>automaton</artifactId>
+            <version>1.11-8</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>org.javapro</groupId>
             <artifactId>generex</artifactId>
