@@ -168,7 +168,7 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
-            <version>1.5.21</version>
+            <version>1.5.30</version>
 <!--            <scope>system</scope>-->
 <!--            <systemPath>${idea.systemPath}/lib/kotlin-reflect-1.5.10-release-896.jar</systemPath>-->
         </dependency>
