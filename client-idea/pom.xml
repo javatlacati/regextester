@@ -137,26 +137,44 @@
         </dependency>
    -->
 
-        <dependency>
-            <groupId>com.jetbrains.rd</groupId>
-            <artifactId>rd-swing</artifactId>
-            <version>0.211.234</version>
-            <scope>system</scope>
-            <systemPath>${idea.systemPath}/lib/rd-swing-0.212.307.jar</systemPath>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.jetbrains.rd</groupId>-->
+<!--            <artifactId>rd-swing</artifactId>-->
+<!--            <version>0.211.234</version>-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>${idea.systemPath}/lib/rd-swing-0.212.307.jar</systemPath>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.jetbrains.rd</groupId>-->
+<!--            <artifactId>rd-framework</artifactId>-->
+<!--            <version>0.211.234</version>-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>${idea.systemPath}/lib/rd-framework-0.212.307.jar</systemPath>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.jetbrains.rd</groupId>
             <artifactId>rd-framework</artifactId>
-            <version>0.211.234</version>
-            <scope>system</scope>
-            <systemPath>${idea.systemPath}/lib/rd-framework-0.212.307.jar</systemPath>
+            <version>2021.3.3</version>
+            <scope>runtime</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.jetbrains.rd</groupId>
+            <artifactId>rd-swing</artifactId>
+            <version>2021.3.3</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.jetbrains.rd</groupId>-->
+<!--            <artifactId>rd-core</artifactId>-->
+<!--            <version>0.211.234</version>-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>${idea.systemPath}/lib/rd-core-0.212.307.jar</systemPath>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.jetbrains.rd</groupId>
             <artifactId>rd-core</artifactId>
-            <version>0.211.234</version>
-            <scope>system</scope>
-            <systemPath>${idea.systemPath}/lib/rd-core-0.212.307.jar</systemPath>
+            <version>2021.3.3</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
