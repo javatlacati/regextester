@@ -25,7 +25,6 @@
         <ij.plugin>true</ij.plugin>
         <INTELLIJ_HOME>C:/Users/RuslanLopez/.IntelliJIdea2019.3/system/plugins-sandbox</INTELLIJ_HOME>
 <!--        <javafx.systemPath>C:\Program Files\javafx-sdk-11.0.1</javafx.systemPath>-->
-        <idea.systemPath>${project.basedir}/lib</idea.systemPath>
         <project.mainclass>org.javapro.regextester.MyToolWindowFactory</project.mainclass>
         <exec.java.bin>${java.home}/bin/java</exec.java.bin>
         <exec.debug.arg>-Ddebug=false</exec.debug.arg>
@@ -94,22 +93,6 @@
             <scope>provided</scope>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.jetbrains.intellij.rd</groupId>-->
-<!--            <artifactId>rd-platform</artifactId>-->
-<!--            <version>211.7142.45</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.jetbrains.intellij.rd</groupId>-->
-<!--            <artifactId>rd-ide-model-generated</artifactId>-->
-<!--            <version>211.7142.45</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.jetbrains.rd</groupId>-->
-<!--            <artifactId>rd-core</artifactId>-->
-<!--            <version>0.211.234</version>-->
-<!--        </dependency>-->
-
         <dependency>
             <groupId>org.roaringbitmap</groupId>
             <artifactId>RoaringBitmap</artifactId>
@@ -121,36 +104,6 @@
 <!--            <version>20.1.0</version>-->
 <!--        </dependency>-->
 
-
-        <!--idea dependencies
-                <dependency>
-                    <groupId>com.jetbrains.intellij.platform</groupId>
-                    <artifactId>util</artifactId>
-                    <version>213.5062</version>
-                </dependency>
-                 <dependency>
-            <groupId>com.jetbrains</groupId>
-            <artifactId>openapi</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${idea.systemPath}/lib/openapi.jar</systemPath>
-        </dependency>
-   -->
-
-<!--        <dependency>-->
-<!--            <groupId>com.jetbrains.rd</groupId>-->
-<!--            <artifactId>rd-swing</artifactId>-->
-<!--            <version>0.211.234</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${idea.systemPath}/lib/rd-swing-0.212.307.jar</systemPath>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.jetbrains.rd</groupId>-->
-<!--            <artifactId>rd-framework</artifactId>-->
-<!--            <version>0.211.234</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${idea.systemPath}/lib/rd-framework-0.212.307.jar</systemPath>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>com.jetbrains.rd</groupId>
             <artifactId>rd-framework</artifactId>
@@ -163,13 +116,6 @@
             <artifactId>rd-swing</artifactId>
             <version>2021.3.4</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.jetbrains.rd</groupId>-->
-<!--            <artifactId>rd-core</artifactId>-->
-<!--            <version>0.211.234</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${idea.systemPath}/lib/rd-core-0.212.307.jar</systemPath>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>com.jetbrains.rd</groupId>
             <artifactId>rd-core</artifactId>
@@ -180,48 +126,12 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
             <version>1.5.31</version>
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${idea.systemPath}/lib/kotlin-stdlib-jdk8.jar</systemPath>-->
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
             <version>1.5.31</version>
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${idea.systemPath}/lib/kotlin-reflect-1.5.10-release-896.jar</systemPath>-->
         </dependency>
-
-
-<!--        <dependency>-->
-<!--            <groupId>org.roaringbitmap</groupId>-->
-<!--            <artifactId>RoaringBitmap</artifactId>-->
-<!--            <version>0.9.16</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${idea.systemPath}/lib/roaringbitmap.jar</systemPath>-->
-<!--        </dependency>-->
-
-
-<!--        <dependency>-->
-<!--            <groupId>com.jetbrains</groupId>-->
-<!--            <artifactId>util</artifactId>-->
-<!--            <version>1.0</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${idea.systemPath}/lib/util.jar</systemPath>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.jetbrains</groupId>-->
-<!--            <artifactId>platform</artifactId>-->
-<!--            <version>1.0</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${idea.systemPath}/lib/platform-api.jar</systemPath>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.jetbrains</groupId>-->
-<!--            <artifactId>annotations</artifactId>-->
-<!--            <version>1.0</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${idea.systemPath}/lib/annotations.jar</systemPath>-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>com.jetbrains.intellij.platform</groupId>
@@ -347,7 +257,7 @@
                 <configuration>
                     <type>zip</type>
                     <classifier>webpages</classifier>
-                    <overWrite>true</overWrite>
+                    <overWriteIfNewer>true</overWriteIfNewer>
                     <outputDirectory>${project.build.directory}/classes/org/javapro/regextester</outputDirectory>
                     <includes>*/**</includes>
                     <includeGroupIds>${project.groupId}</includeGroupIds>
