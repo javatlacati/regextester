@@ -805,7 +805,7 @@ Public License instead of this License.  But first, please read
     </licenses>
 
     <properties>
-        <netbeans.version>RELEASE126</netbeans.version>
+        <netbeans.version>RELEASE90</netbeans.version>
         <netbeans.compile.on.save>none</netbeans.compile.on.save>
         <project.mainclass>org.javapro.regextester.NbMain</project.mainclass>
 <!--        <net.java.html.version>1.3</net.java.html.version>-->
