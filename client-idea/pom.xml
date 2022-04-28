@@ -89,14 +89,14 @@
         <dependency>
             <groupId>com.jetbrains.intellij.platform</groupId>
             <artifactId>util</artifactId>
-            <version>221.4733</version>
+            <version>222.1903</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.roaringbitmap</groupId>
             <artifactId>RoaringBitmap</artifactId>
-            <version>0.9.23</version>
+            <version>0.9.26</version>
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.jetbrains</groupId>-->
@@ -136,19 +136,19 @@
         <dependency>
             <groupId>com.jetbrains.intellij.platform</groupId>
             <artifactId>core</artifactId>
-            <version>213.7172.22</version>
+            <version>221.5080.224</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.jetbrains.intellij.platform</groupId>
             <artifactId>core-ui</artifactId>
-            <version>213.7172.22</version>
+            <version>221.5080.224</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.jetbrains.intellij.platform</groupId>
             <artifactId>ide</artifactId>
-            <version>213.7172.22</version>
+            <version>221.5080.224</version>
             <scope>provided</scope>
         </dependency>
 
@@ -195,7 +195,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.9.0</version>
+                <version>3.10.1</version>
                 <executions>
                     <execution>
                         <id>default-compile</id>
