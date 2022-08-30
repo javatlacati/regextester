@@ -89,7 +89,7 @@
         <dependency>
             <groupId>com.jetbrains.intellij.platform</groupId>
             <artifactId>util</artifactId>
-            <version>221.4733</version>
+            <version>223.3860</version>
             <scope>provided</scope>
         </dependency>
 
