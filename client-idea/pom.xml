@@ -107,19 +107,19 @@
         <dependency>
             <groupId>com.jetbrains.rd</groupId>
             <artifactId>rd-framework</artifactId>
-            <version>2022.1.3</version>
+            <version>2022.3.0</version>
             <scope>runtime</scope>
         </dependency>
 
         <dependency>
             <groupId>com.jetbrains.rd</groupId>
             <artifactId>rd-swing</artifactId>
-            <version>2022.1.3</version>
+            <version>2022.3.0</version>
         </dependency>
         <dependency>
             <groupId>com.jetbrains.rd</groupId>
             <artifactId>rd-core</artifactId>
-            <version>2022.1.3</version>
+            <version>2022.3.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
