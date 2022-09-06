@@ -21,7 +21,7 @@
     </modules>
     <properties>
         <net.java.html.version>1.7.3</net.java.html.version>
-        <openjfx.version>18.0.1</openjfx.version>
+        <openjfx.version>18.0.2</openjfx.version>
         <bck2brwsr.version>0.54</bck2brwsr.version>
         <bck2brwsr.obfuscationlevel>MINIMAL</bck2brwsr.obfuscationlevel>
         <junit.browser.version>1.0</junit.browser.version>
@@ -136,7 +136,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>3.2.2</version>
+                <version>3.4.1</version>
             </plugin>
             <!-- generate source code jar -->
             <plugin>
