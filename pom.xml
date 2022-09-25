@@ -20,7 +20,7 @@
         <module>client-idea</module>
     </modules>
     <properties>
-        <net.java.html.version>1.7.3</net.java.html.version>
+        <net.java.html.version>1.8.1</net.java.html.version>
         <openjfx.version>18.0.2</openjfx.version>
         <bck2brwsr.version>0.54</bck2brwsr.version>
         <bck2brwsr.obfuscationlevel>MINIMAL</bck2brwsr.obfuscationlevel>
@@ -131,7 +131,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.12.0</version>
+                <version>3.12.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
