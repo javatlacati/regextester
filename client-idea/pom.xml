@@ -114,7 +114,7 @@
         <dependency>
             <groupId>com.jetbrains.rd</groupId>
             <artifactId>rd-swing</artifactId>
-            <version>2022.3.0</version>
+            <version>2022.3.2</version>
         </dependency>
         <dependency>
             <groupId>com.jetbrains.rd</groupId>
@@ -125,12 +125,12 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <version>1.6.10</version>
+            <version>1.7.10</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
-            <version>1.6.10</version>
+            <version>1.7.10</version>
         </dependency>
 
         <dependency>
@@ -142,13 +142,13 @@
         <dependency>
             <groupId>com.jetbrains.intellij.platform</groupId>
             <artifactId>core-ui</artifactId>
-            <version>221.5080.224</version>
+            <version>222.4167.33</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.jetbrains.intellij.platform</groupId>
             <artifactId>ide</artifactId>
-            <version>221.5080.224</version>
+            <version>222.4167.33</version>
             <scope>provided</scope>
         </dependency>
 
