@@ -107,7 +107,7 @@
         <dependency>
             <groupId>com.jetbrains.rd</groupId>
             <artifactId>rd-framework</artifactId>
-            <version>2022.3.0</version>
+            <version>2022.3.2</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -156,25 +156,25 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>18.0.1</version>
+            <version>18.0.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-swing</artifactId>
-            <version>18.0.1</version>
+            <version>18.0.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-web</artifactId>
-            <version>18.0.1</version>
+            <version>18.0.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm</artifactId>
-            <version>9.2</version>
+            <version>9.3</version>
         </dependency>
     </dependencies>
     <build>
