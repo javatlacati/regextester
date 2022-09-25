@@ -96,7 +96,7 @@
         <dependency>
             <groupId>org.roaringbitmap</groupId>
             <artifactId>RoaringBitmap</artifactId>
-            <version>0.9.26</version>
+            <version>0.9.32</version>
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.jetbrains</groupId>-->
@@ -156,25 +156,25 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>18.0.1</version>
+            <version>18.0.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-swing</artifactId>
-            <version>18.0.1</version>
+            <version>18.0.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-web</artifactId>
-            <version>18.0.1</version>
+            <version>18.0.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm</artifactId>
-            <version>9.2</version>
+            <version>9.3</version>
         </dependency>
     </dependencies>
     <build>
