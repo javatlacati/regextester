@@ -1,6 +1,6 @@
 language: java
 env:
-  - jdk_switcher_home=/opt/jdk_switcher/jdk_switcher.sh
+  - jdk_switcher=/opt/jdk_switcher/jdk_switcher.sh
 
 cache:
   directories:
@@ -20,34 +20,35 @@ before_install:
   # start your web application and listen on `localhost`
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 script:
-  - cd .\automatonosgi\
-  - $jdk_switcher_home/jdk_switcher use openjdk8
+  - dir
+  - cd ./automatonosgi
+  - jdk_switcher use openjdk11
 #  - export JAVA_HOME=$HOME/openjdk11
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
   - cd ..
-  - cd .\generex\
+  - cd ./generex
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
   - cd ..
-  - cd .\js\
+  - cd ./js
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
   - cd ..
-  - cd .\client\
+  - cd ./client
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
   - cd ..
-  - cd .\client-web\
+  - cd ./client-web
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
   - cd ..
-  - cd .\client-netbeans\
+  - cd ./client-netbeans
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
   - cd ..
-  -  cd .\client-idea\
-  - $jdk_switcher_home/jdk_switcher use openjdk11
+  -  cd ./client-idea
+  - jdk_switcher use openjdk17
 #  - export JAVA_HOME=$HOME/openjdk11
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
