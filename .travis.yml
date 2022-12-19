@@ -1,4 +1,6 @@
 language: java
+env:
+  - jdk_switcher_home=/opt/jdk_switcher/jdk_switcher.sh
 
 cache:
   directories:
@@ -19,7 +21,7 @@ before_install:
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 script:
   - cd .\automatonosgi\
-  - jdk_switcher use openjdk8
+  - $jdk_switcher_home/jdk_switcher use openjdk8
 #  - export JAVA_HOME=$HOME/openjdk11
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
@@ -45,7 +47,7 @@ script:
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
   - cd ..
   -  cd .\client-idea\
-  - jdk_switcher use openjdk11
+  - $jdk_switcher_home/jdk_switcher use openjdk11
 #  - export JAVA_HOME=$HOME/openjdk11
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
