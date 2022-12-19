@@ -13,7 +13,7 @@ before_install:
   - sudo apt-get -qq update || echo no sudo apt-get
   - sudo apt-get install -y libgnome2-0
   - sudo apt-get install -y libwebkitgtk-3.0-0 || echo no sudo apt-get
-  - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
+  - wget https://github.com/sormuras/bach/raw/releases/11/install-jdk.sh
   - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
   # start your web application and listen on `localhost`
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
