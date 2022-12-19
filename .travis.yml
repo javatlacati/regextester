@@ -1,6 +1,6 @@
 language: java
 env:
-  - jdk_switcher=/opt/jdk_switcher/jdk_switcher.sh
+  - jdk_switcher=~/.jdk_switcher_rc/jdk_switcher.sh
 
 cache:
   directories:
@@ -22,7 +22,7 @@ before_install:
 install:
   - dir
   - cd ./automatonosgi
-  - jdk_switcher use openjdk11
+#  - jdk_switcher use openjdk11
 #  - export JAVA_HOME=$HOME/openjdk11
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
