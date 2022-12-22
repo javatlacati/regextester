@@ -18,11 +18,15 @@ before_install:
   - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
   # start your web application and listen on `localhost`
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-  - whereis jdk_switcher
+
+stages:
+  - compile
+  - compile1
 
 jobs:
   include:
     - name: job1
+      stage: compile
       jdk:
         - openjdk11
       install:
@@ -31,6 +35,7 @@ jobs:
       after_success:
         - mvn coveralls:report -B
     - name: job2
+      stage: compile1
       jdk:
         - openjdk17
       depends_on: job1
