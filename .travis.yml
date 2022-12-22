@@ -35,11 +35,18 @@ jobs:
         - mvn test -pl org.javapro:regextester-js,org.javapro:automatonosgi,org.javapro:generex,org.javapro:client,org.javapro:regextester-web,org.javapro:regextester-nb org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
       after_success:
         - mvn coveralls:report -B
+      workspaces:
+        create:
+          name: ws1
+          paths:
+            - $HOME/.m2
     - name: job2
       stage: compile1
       jdk:
         - openjdk17
       depends_on: job1
+      workspaces:
+        use: ws1
       install:
         - mvn install -pl org.javapro:regextester-idea -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
       script:
