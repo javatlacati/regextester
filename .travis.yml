@@ -1,8 +1,9 @@
 os: linux
-dist: trusty
+dist: xenial
 language: java
-env:
-  - jdk_switcher=/opt/jdk_switcher/jdk_switcher.sh
+jdk:
+  - openjdk17
+  - openjdk11
 
 cache:
   directories:
@@ -25,7 +26,7 @@ before_install:
 install:
   - mvn install -pl org.javapro:regextester-js,org.javapro:automatonosgi,org.javapro:generex,org.javapro:client,org.javapro:regextester-web,org.javapro:regextester-nb -DskipTests=true -Dmaven.javadoc.skip=true -B
   - mvn test -pl org.javapro:regextester-js,org.javapro:automatonosgi,org.javapro:generex,org.javapro:client,org.javapro:regextester-web,org.javapro:regextester-nb org.jacoco:jacoco-maven-plugin:0.8.2:report -B
-  - $jdk_switcher use openjdk17
+  - jdk_switcher use openjdk17
 #  - export JAVA_HOME=$HOME/openjdk17
   - mvn install -pl org.javapro:regextester-idea -DskipTests=true -Dmaven.javadoc.skip=true -B
   - mvn test -pl org.javapro:regextester-idea org.jacoco:jacoco-maven-plugin:0.8.2:report -B
