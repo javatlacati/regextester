@@ -22,7 +22,8 @@ before_install:
 
 jobs:
   include:
-    - jdk:
+    - name: job1
+      jdk:
         - openjdk11
       install:
         - mvn install -pl org.javapro:regextester-js,org.javapro:automatonosgi,org.javapro:generex,org.javapro:client,org.javapro:regextester-web,org.javapro:regextester-nb -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
@@ -30,8 +31,10 @@ jobs:
         - jdk_switcher use openjdk17
       after_success:
         - mvn coveralls:report -B
-    - jdk:
+    - name: job2
+      jdk:
         - openjdk17
+      depends_on: job1
       install:
         - mvn install -pl org.javapro:regextester-idea -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
         - mvn test -pl org.javapro:regextester-idea org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
