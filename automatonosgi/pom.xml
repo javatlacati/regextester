@@ -4,18 +4,19 @@
     <parent>
         <groupId>org.javapro</groupId>
         <artifactId>regextester-pom</artifactId>
-        <version>1.0.4</version>
+        <version>1.0.5</version>
     </parent>
     <artifactId>automatonosgi</artifactId>
     <packaging>bundle</packaging>
  
     <dependencies>
         <dependency>
-            <groupId>dk.brics.automaton</groupId>
+            <groupId>dk.brics</groupId>
             <artifactId>automaton</artifactId>
-            <version>1.11-8</version>
+            <version>1.12-4</version>
             <scope>provided</scope>
         </dependency>
+
     </dependencies>
      <build>
         <plugins>

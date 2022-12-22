@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>org.javapro.idea</id>
     <name>Dukescript Java Regex Tester</name>
-    <version>1.0.3.4</version>
+    <version>1.0.4</version>
     <vendor email="scherzo16@gmail.com" url="http://www.javapro.org">javatlacati from Java Pro</vendor>
 
     <description><![CDATA[
@@ -94,7 +94,7 @@
 
     <change-notes><![CDATA[
       <ul>
-        <li>using Jetbrains embedded JavaFx support for intelliJ plugins</li>
+        <li>preventing future compatibility problems</li>
       </ul>
     ]]>
     </change-notes>
