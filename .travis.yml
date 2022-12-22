@@ -1,3 +1,5 @@
+os: linux
+dist: trusty
 language: java
 env:
   - jdk_switcher=/opt/jdk_switcher/jdk_switcher.sh

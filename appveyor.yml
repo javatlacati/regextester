@@ -10,11 +10,7 @@ install:
 #  - cmd: echo %M2_HOME%
 
 build_script:
-  - mvnw install -DskipTests -B -ntp
-
- # verify artifacts
-test_script:
-  - mvnw test -B -ntp
+  - mvnw install -B -ntp
 
 cache:
   - C:\Users\appveyor\.m2
