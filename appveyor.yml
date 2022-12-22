@@ -5,7 +5,7 @@ environment:
 
 # install required tools (maven, secure-file, encrypted files)
 install:
-  - mvn -N io.takari:maven:wrapper -Dmaven=3.6.2 -B
+  - mvn -N io.takari:maven:wrapper -Dmaven=3.6.2 -B -ntp
 #  - cmd: echo %JAVA_HOME%
 #  - cmd: echo %M2_HOME%
 
