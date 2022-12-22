@@ -31,7 +31,7 @@ jobs:
         - openjdk11
       install:
         - mvn install -pl org.javapro:regextester-js,org.javapro:automatonosgi,org.javapro:generex,org.javapro:client,org.javapro:regextester-web,org.javapro:regextester-nb -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
-      test:
+      script:
         - mvn test -pl org.javapro:regextester-js,org.javapro:automatonosgi,org.javapro:generex,org.javapro:client,org.javapro:regextester-web,org.javapro:regextester-nb org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
       after_success:
         - mvn coveralls:report -B
@@ -42,5 +42,5 @@ jobs:
       depends_on: job1
       install:
         - mvn install -pl org.javapro:regextester-idea -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
-      test:
+      script:
         - mvn test -pl org.javapro:regextester-idea org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
