@@ -816,14 +816,6 @@ Public License instead of this License.  But first, please read
             <name>NetBeans</name>
             <url>https://netbeans.apidesign.org/maven2/</url>
         </repository>
-<!--        <repository>-->
-<!--            <id>dev</id>-->
-<!--            <name>NetBeans</name>-->
-<!--            <url>https://bits.netbeans.org/nexus/content/repositories/snapshots/</url>-->
-<!--            <snapshots>-->
-<!--                <enabled>true</enabled>-->
-<!--            </snapshots>-->
-<!--        </repository>-->
     </repositories>
     <build>
         <plugins>
@@ -1019,7 +1011,7 @@ Public License instead of this License.  But first, please read
 
         <dependency>
             <groupId>org.javapro</groupId>
-            <artifactId>regextester</artifactId>
+            <artifactId>client</artifactId>
             <version>${project.version}</version>
             <exclusions>
                 <exclusion>

@@ -169,7 +169,7 @@
     <dependencies>
         <dependency>
             <groupId>org.javapro</groupId>
-            <artifactId>regextester</artifactId>
+            <artifactId>client</artifactId>
             <version>${project.version}</version>
             <exclusions>
                 <exclusion>

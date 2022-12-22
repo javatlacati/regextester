@@ -9,7 +9,7 @@
         <version>1.0.4</version>
     </parent>
 
-    <artifactId>regextester</artifactId>
+    <artifactId>client</artifactId>
     <packaging>bundle</packaging>
 
     <name>regextester General Client Code</name>

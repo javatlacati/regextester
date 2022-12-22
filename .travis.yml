@@ -20,38 +20,11 @@ before_install:
   # start your web application and listen on `localhost`
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 install:
-  - dir
-  - cd ./automatonosgi
-#  - jdk_switcher use openjdk11
-#  - export JAVA_HOME=$HOME/openjdk11
-  - mvn install package -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
-  - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
-  - cd ..
-  - cd ./generex
-  - mvn install package -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
-  - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
-  - cd ..
-  - cd ./js
-  - mvn install package -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
-  - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
-  - cd ..
-  - cd ./client
-  - mvn install package -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
-  - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
-  - cd ..
-  - cd ./client-web
-  - mvn install package -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
-  - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
-  - cd ..
-  - cd ./client-netbeans
-  - mvn install package -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
-  - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
-  - cd ..
-  -  cd ./client-idea
+  - mvn install -pl org.javapro:regextester-js,org.javapro:automatonosgi,org.javapro:generex,org.javapro:client,org.javapro:regextester-web,org.javapro:regextester-nb -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
+  - mvn test -pl org.javapro:regextester-js,org.javapro:automatonosgi,org.javapro:generex,org.javapro:client,org.javapro:regextester-web,org.javapro:regextester-nb org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
   - jdk_switcher use openjdk17
 #  - export JAVA_HOME=$HOME/openjdk11
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
-  - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
-  - cd ..
+  - mvn install -pl org.javapro:regextester-idea -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
+  - mvn test -pl org.javapro:regextester-idea org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
 after_success:
   - mvn coveralls:report -B -ntp
