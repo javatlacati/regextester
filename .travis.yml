@@ -24,27 +24,27 @@ install:
   - cd ./automatonosgi
 #  - jdk_switcher use openjdk11
 #  - export JAVA_HOME=$HOME/openjdk11
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
+  - mvn install package -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
   - cd ..
   - cd ./generex
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
+  - mvn install package -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
   - cd ..
   - cd ./js
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
+  - mvn install package -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
   - cd ..
   - cd ./client
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
+  - mvn install package -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
   - cd ..
   - cd ./client-web
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
+  - mvn install package -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
   - cd ..
   - cd ./client-netbeans
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
+  - mvn install package -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
   - cd ..
   -  cd ./client-idea
