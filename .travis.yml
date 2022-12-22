@@ -1,6 +1,6 @@
 language: java
 env:
-  - jdk_switcher=~/.jdk_switcher_rc/jdk_switcher.sh
+  - jdk_switcher=/opt/jdk_switcher/jdk_switcher.sh
 
 cache:
   directories:
