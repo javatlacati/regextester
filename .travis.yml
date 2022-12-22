@@ -19,11 +19,12 @@ before_install:
   - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
   # start your web application and listen on `localhost`
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - whereis jdk_switcher
 install:
   - mvn install -pl org.javapro:regextester-js,org.javapro:automatonosgi,org.javapro:generex,org.javapro:client,org.javapro:regextester-web,org.javapro:regextester-nb -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test -pl org.javapro:regextester-js,org.javapro:automatonosgi,org.javapro:generex,org.javapro:client,org.javapro:regextester-web,org.javapro:regextester-nb org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
   - $jdk_switcher use openjdk17
-#  - export JAVA_HOME=$HOME/openjdk11
+#  - export JAVA_HOME=$HOME/openjdk17
   - mvn install -pl org.javapro:regextester-idea -DskipTests=true -Dmaven.javadoc.skip=true -B -ntp
   - mvn test -pl org.javapro:regextester-idea org.jacoco:jacoco-maven-plugin:0.8.2:report -B -ntp
 after_success:
