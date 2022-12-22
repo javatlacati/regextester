@@ -35,7 +35,7 @@ public class MyToolWindowFactory implements ToolWindowFactory {
     public void createToolWindowContent(Project project, ToolWindow toolWindow) {
         if (toolWindow != null) {
             myToolWindow = toolWindow;
-            ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
+            ContentFactory contentFactory = ContentFactory.getInstance();
             final JFXPanel fxPanel = new JFXPanel();
             Content content = contentFactory.createContent(fxPanel, "", false);
             Platform.setImplicitExit(false);
@@ -113,12 +113,6 @@ public class MyToolWindowFactory implements ToolWindowFactory {
             return allPossibilities;
         }
 
-        //
-//    @Override
-//    public String generateExample(String regexText) {
-//        Generex generex = new Generex(regexText);
-//        return generex.random();
-//    }
     }
 
 }
