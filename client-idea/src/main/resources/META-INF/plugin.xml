@@ -2,7 +2,7 @@
     <id>org.javapro.idea</id>
     <name>Dukescript Java Regex Tester</name>
     <version>1.0.4</version>
-    <vendor email="scherzo16@gmail.com" url="http://www.javapro.org">javatlacati from Java Pro</vendor>
+    <vendor email="scherzo16@gmail.com" url="https://www.javapro.org">javatlacati from Java Pro</vendor>
 
     <description><![CDATA[
     <h2>An easy to use regular expressions tool (builder, tester, valid values generator)</h2>
@@ -70,7 +70,7 @@
     This plugin was possible due the following technologies:
     <ul>
         <li>
-            <a href="http://dukescript.com/">Dukescript</a>
+            <a href="https://dukescript.com/">Dukescript</a>
         </li>
         <li>
             <a href="https://jorgeantrax.github.io/level-docs/">Level CSS</a>
@@ -79,7 +79,7 @@
             <a href="https://bcrikko.github.io/NES.css/">NES CSS</a>
         </li>
         <li>
-            <a href="http://kristopolous.github.io/BOOTSTRA.386/">BOOTSTRA.386</a>
+            <a href="https://kristopolous.github.io/BOOTSTRA.386/">BOOTSTRA.386</a>
         </li>
         <li>
             <a href="https://github.com/mifmif/Generex/">Generex</a>
@@ -99,7 +99,7 @@
     ]]>
     </change-notes>
 
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
     <idea-version since-build="163.0"/>
 
     <!--avalible if java language support is installed-->
