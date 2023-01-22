@@ -30,7 +30,7 @@
                         <textarea id="txtTestCase" class="is-material is-dark input is-success"
                                   data-bind="value: testCase, valueUpdate: 'afterkeydown'"
                                   data-step="1" data-intro="Use this field for write your test case"
-                                  placeholder="Write your test case text..." oninput="handleInput()" onscroll="handleScroll()"></textarea>
+                                  placeholder="Write your test case text..."></textarea>
                     <!--</div>-->
                 </div>
             </div>
@@ -50,7 +50,7 @@
             </div>
 
             <div class="lv-row">
-                <div class="lv-column is-center padding-05">
+                <div class="lv-column is-center padding-05" data-bind="if: regexCompiles()">
                     <pre data-bind="text: matches() ? 'Match':'No match', valueUpdate: 'input',style: { color: matches() ? 'green' : 'red' }"
                          data-step="4" data-intro="Here you can see if your expression matches the regex you provided"></pre>
                     <div class="lv-checkbox is-check"  data-step="5" data-intro="If you want to test replacement click this checkbox">
@@ -102,7 +102,7 @@
                     <pre data-bind="text: replaced"></pre>
                 </div>
             </div>
-
+            
             <div class="lv-row">
                 <div class="lv-column is-center padding-05" data-step="8" data-intro="You can get the capture groups in case you want to extract info">
                     <div class="lv-checkbox is-check"  >

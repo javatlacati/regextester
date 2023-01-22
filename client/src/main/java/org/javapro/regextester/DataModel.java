@@ -15,6 +15,10 @@ import net.java.html.json.Function;
 import net.java.html.json.Model;
 import net.java.html.json.Property;
 import net.java.html.json.ModelOperation;
+import static org.javapro.regextester.RegexOperation.REPLACEMENT;
+import static org.javapro.regextester.RegexOperation.SEARCHING;
+import static org.javapro.regextester.RegexOperation.SPLITTING;
+import static org.javapro.regextester.RegexOperation.VALIDATION;
 import org.javapro.regextester.js.PlatformServices;
 
 /**
@@ -47,6 +51,16 @@ final class DataModel {
     public PlatformServices getServices() {
         return services;
     }
+    
+    @ComputedProperty
+    static boolean regexCompiles(String regexText){
+        try {
+            Pattern pattern = Pattern.compile(regexText);
+            return true;
+        } catch (PatternSyntaxException pse) {
+            return false;
+        }
+    }
 
     @ComputedProperty
     static String replaced(String regexText, String testCase, String replacementText) {
@@ -55,6 +69,8 @@ final class DataModel {
             return pattern.matcher(testCase).replaceAll(replacementText);
         } catch (IndexOutOfBoundsException ioobe) {
             return ioobe.getMessage();
+        } catch (PatternSyntaxException pse) {
+            return "invalid regex";
         }
     }
 
@@ -92,33 +108,35 @@ final class DataModel {
     }
 
     private static void generateCodeForPlatform(RegexTesting model, RegexOperation selectedOperation, String regexText, String testCase, String replacementText, String validationKey, String searchingKey, String splitKey, String replaceKey) {
-        String generatedCode;
-        switch (selectedOperation) {
-            case VALIDATION: {
-                generatedCode = MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString(validationKey), escapedRegexText(regexText), escapedRegexText(testCase));
-                break;
+        if(regexCompiles(regexText)){
+            String generatedCode;
+            switch (selectedOperation) {
+                case VALIDATION: {
+                    generatedCode = MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString(validationKey), escapedRegexText(regexText), escapedRegexText(testCase));
+                    break;
+                }
+                case SEARCHING: {
+                    generatedCode = MessageFormat.format(
+                            java.util.ResourceBundle.getBundle("codegeneration").getString(searchingKey),
+                             escapedRegexText(regexText), escapedRegexText(testCase));
+                    break;
+                }
+                case SPLITTING: {
+                    generatedCode = MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString(splitKey), escapedRegexText(regexText), escapedRegexText(testCase));
+                    break;
+                }
+                case REPLACEMENT: {
+                    generatedCode = MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString(replaceKey), escapedRegexText(regexText), escapedRegexText(testCase), replacementText);
+                    break;
+                }
+                default: {
+                    generatedCode = ""; //NOI18N
+                    break;
+                }
             }
-            case SEARCHING: {
-                generatedCode = MessageFormat.format(
-                        java.util.ResourceBundle.getBundle("codegeneration").getString(searchingKey)
-                        , escapedRegexText(regexText), escapedRegexText(testCase));
-                break;
-            }
-            case SPLITTING: {
-                generatedCode = MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString(splitKey), escapedRegexText(regexText), escapedRegexText(testCase));
-                break;
-            }
-            case REPLACEMENT: {
-                generatedCode = MessageFormat.format(java.util.ResourceBundle.getBundle("codegeneration").getString(replaceKey), escapedRegexText(regexText), escapedRegexText(testCase), replacementText);
-                break;
-            }
-            default: {
-                generatedCode = ""; //NOI18N
-                break;
-            }
-        }
 
-        model.setGeneratedCode(generatedCode);
+            model.setGeneratedCode(generatedCode);
+        }
     }
 
     static void setEscapedRegexText(RegexTesting model, String value) {
@@ -137,9 +155,13 @@ final class DataModel {
 //    }
     @ComputedProperty
     static boolean matches(String regexText, String testCase) {
-        //return testCase.matches(regexText);
-        Pattern pattern = Pattern.compile(regexText);
-        return pattern.matcher(testCase).matches();
+        try {
+            //return testCase.matches(regexText);
+            Pattern pattern = Pattern.compile(regexText);
+            return pattern.matcher(testCase).matches();
+        } catch (PatternSyntaxException pse) {
+            return false;
+        }
     }
 
     /*@Function

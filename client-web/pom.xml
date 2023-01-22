@@ -68,7 +68,7 @@
                     </archive>
                 </configuration>
             </plugin>
-<!--            <plugin>
+<plugin>
                 <groupId>org.apidesign.bck2brwsr</groupId>
                 <artifactId>bck2brwsr-maven-plugin</artifactId>
                 <version>${bck2brwsr.version}</version>
@@ -90,7 +90,7 @@
                         <export>${project.mainclass}</export>
                     </exports>
                 </configuration>
-            </plugin>-->
+            </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.4.2</version>

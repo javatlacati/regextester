@@ -248,7 +248,7 @@
           <type>jar</type>
         </dependency>
         -->
-
+        
         <!-- Bck2Brwsr VM presenter for BrowserRunner - - >
         <dependency>
           <groupId>org.apidesign.bck2brwsr</groupId>
