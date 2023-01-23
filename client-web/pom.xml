@@ -76,7 +76,7 @@
                     <execution>
                         <goals>
                             <goal>brwsr</goal>
-                            <goal>aot</goal>
+<!--                            <goal>aot</goal>-->
                         </goals>
                     </execution>
                 </executions>
