@@ -1,0 +1,110 @@
+import java.nio.file.Files
+import java.nio.file.Paths
+
+plugins {
+    id("java")
+    id "org.jetbrains.intellij" version '1.12.0'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+//    id 'org.netbeans.html.html4j-maven-plugin' version "1.8.1"
+}
+
+apply plugin: 'java'
+
+ext {
+    net_java_html_version = "1.8.1"
+}
+
+group = "org.javapro"
+version = "1.0.5"
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+    maven { url "https://www.jetbrains.com/intellij-repository/releases" }
+    maven { url "https://cache-redirector.jetbrains.com/intellij-dependencies" }
+    mavenLocal()
+    maven {
+        url 'https://repo.clojars.org'
+        name 'Clojars'
+    }
+}
+
+dependencies {
+    implementation "org.javapro:client:${project.version}"
+    implementation "org.netbeans.html:net.java.html.boot:${net_java_html_version}"
+    implementation "org.netbeans.html:net.java.html.boot.fx:${net_java_html_version}"
+    implementation 'javafx-wrapper:javafx-wrapper:0.1.1'
+    implementation "org.netbeans.html:ko4j:${net_java_html_version}"
+    implementation "${project.group}:regextester-js:${project.version}"
+    testImplementation group: 'junit', name: 'junit', version: '4.13.1'
+    compileOnly "org.openjfx:javafx-swing:$javafx.version"
+    compileOnly "org.openjfx:javafx-controls:$javafx.version"
+    compileOnly "org.openjfx:javafx-web:$javafx.version"
+//    implementation group: 'org.eclipse.mylyn.github', name: 'org.eclipse.egit.github.core', version: '2.1.5'
+}
+
+javafx {
+    version = '19.0.2.1'
+    modules = ['javafx.controls', 'javafx.swing', 'javafx.web']
+}
+
+// Configure Gradle IntelliJ Plugin
+// Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
+intellij {
+    plugins = ['java']
+    def localDist = findIntellijPath()
+    if (!System.getenv("CI")?.trim() && localDist != null) {
+        localPath localDist.toString()
+    } else {
+        type = "IU"
+        version = "2022.3.1"
+    }
+}
+
+// create your own .ijlocation if any alternatives should be suggested
+static def findIntellijPath() {
+    try {
+        def workdir = System.getProperty("user.dir")
+        if (workdir != null && Files.exists(Paths.get(workdir).resolve(".ijlocation"))) {
+            return Files.readAllLines(Paths.get(workdir).resolve(".ijlocation"))[0].trim()
+        } else {
+            def user = System.getProperty("user.name")
+            def apps = System.getProperty("os.name").startsWith("Windows")
+                    ? "C:\\Users\\$user\\AppData\\Local\\JetBrains\\Toolbox\\apps"
+                    : "/home/$user/.local/share/JetBrains/Toolbox/apps"
+            if (!Files.exists(Paths.get(apps))) return null
+            return Files.list(Paths.get(apps))
+                    .filter({ _ -> _.getFileName().startsWith("IDEA-C") || _.getFileName().startsWith("IDEA-U") })
+                    .map({ _ -> _.resolve("ch-0") }).filter({ f -> f != null && Files.isDirectory(f) })
+                    .flatMap({ f -> Files.list(f) }).filter({ _ -> _.fileName.toString().matches("\\d+\\.\\d+\\.\\d+") })
+                    .sorted({ a, b -> b.fileName <=> a.fileName }).findFirst().orElseGet({ _ -> null })
+        }
+    } catch (Exception ignored) {
+        ignored.printStackTrace(System.out)
+        return null
+    }
+}
+
+runPluginVerifier {
+    ideVersions = ["IC-2022.3.1", "CL-2022.3.1", "WS-2022.3.1"]
+}
+
+tasks {
+    // Set the JVM compatibility versions
+
+    patchPluginXml {
+        sinceBuild.set("221")
+        untilBuild.set("231.*")
+    }
+
+    signPlugin {
+        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
+        privateKey.set(System.getenv("PRIVATE_KEY"))
+        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
+    }
+
+    publishPlugin {
+        token.set(System.getenv("PUBLISH_TOKEN"))
+    }
+}
