@@ -148,7 +148,7 @@
         <dependency>
             <groupId>com.jetbrains.intellij.platform</groupId>
             <artifactId>ide</artifactId>
-            <version>223.8836.43</version>
+            <version>231.8109.197</version>
             <scope>provided</scope>
         </dependency>
 
