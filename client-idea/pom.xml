@@ -114,7 +114,7 @@
         <dependency>
             <groupId>com.jetbrains.rd</groupId>
             <artifactId>rd-swing</artifactId>
-            <version>2023.1.2</version>
+            <version>2023.2.1-test1</version>
         </dependency>
         <dependency>
             <groupId>com.jetbrains.rd</groupId>
