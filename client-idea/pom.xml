@@ -107,7 +107,7 @@
         <dependency>
             <groupId>com.jetbrains.rd</groupId>
             <artifactId>rd-framework</artifactId>
-            <version>2023.1.2</version>
+            <version>2023.2.2-proto-refactoring-usov-11</version>
             <scope>runtime</scope>
         </dependency>
 
