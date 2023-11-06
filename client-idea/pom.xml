@@ -107,7 +107,7 @@
         <dependency>
             <groupId>com.jetbrains.rd</groupId>
             <artifactId>rd-framework</artifactId>
-            <version>2023.3.2-preview3</version>
+            <version>2024.1.1-preview1</version>
             <scope>runtime</scope>
         </dependency>
 
